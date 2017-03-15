@@ -392,6 +392,7 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
     private String toFormattedDate(String stringDate) {
         DateFormat formatter;
         Date date = null;
+        //
         formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             date = (Date) formatter.parse(stringDate);
