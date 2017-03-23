@@ -9,7 +9,7 @@ import android.util.Log;
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.authentication.AuthenticationActivity;
 import com.nader.starfeeds.data.SessionManager;
-import com.nader.starfeeds.ui.ItemsListActivity;
+import com.nader.starfeeds.ui.MainViewActivity;
 
 /**
  * Activity class which is started first, and controls the base flow
@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
                 }
                 else {
-                    Intent intent = new Intent(getBaseContext(), ItemsListActivity.class);
+                    Intent intent = new Intent(getBaseContext(), MainViewActivity.class);
                     //clear activity task
                     startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
                 }
@@ -58,7 +58,7 @@ public class SplashActivity extends AppCompatActivity {
         }
         //check request code and session instance
         else if(resultCode == Configuration.AUTHENTICATION_REQUEST && SessionManager.getInstance().isLoggedIn()){
-            Intent intent = new Intent(getBaseContext(), ItemsListActivity.class);
+            Intent intent = new Intent(getBaseContext(), MainViewActivity.class);
             startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
         }
         else{

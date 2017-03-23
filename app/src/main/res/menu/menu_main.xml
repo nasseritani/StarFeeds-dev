@@ -5,10 +5,10 @@
         android:orderInCategory="100" app:showAsAction="ifRoom"
         android:icon="@drawable/drawable_settings_icon"
         />
-    <item
-        android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="always"
-        app:actionViewClass="android.support.v7.widget.SearchView"
-        android:title="Search"/>
+
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        app:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 </menu>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nader.starfeeds">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -17,17 +18,25 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".authentication.AuthenticationActivity" />
-
         <activity android:name=".LogOutActivity" />
-        <activity android:name=".ui.ItemsListActivity" />
-        <activity android:name=".ui.DetailsActivity">
+        <activity android:name=".ui.MainViewActivity" />
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.ItemsListActivity" />
-        </activity>
+                android:value=".ui.MainViewActivity" />
         <activity android:name=".settings.SettingsActivity" />
-        <activity android:name="ui.DetailsActivity" />
+        <activity android:name=".Search.SearchActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"
+                android:value=".Search.SearchActivity"/>
+        </activity>
     </application>
+
 </manifest>

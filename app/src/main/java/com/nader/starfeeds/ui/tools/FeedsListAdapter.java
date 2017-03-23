@@ -46,12 +46,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class ItemsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private ArrayList<ListingItem> items = new ArrayList<>();
     private Context ctx;
     private OnListListener listener = null;
 
-    public ItemsListAdapter(ArrayList<ListingItem> items, OnListListener listener, Context ctx) {
+    public FeedsListAdapter(ArrayList<ListingItem> items, OnListListener listener, Context ctx) {
         if (items != null) {
             this.items = items;
         }
@@ -96,7 +96,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
         return holder;
     }
-
     /**
      * Adds new items to the list.
      */
@@ -111,7 +110,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         items.add(item);
         notifyItemInserted(items.size() - 1);
     }
-
     /**
      * Removes last item of the list.
      */
@@ -124,7 +122,6 @@ public class ItemsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ListingItem item = items.get(position);
         //sets position to current binded view.
-
         switch (item.getType()) {
 
             case Loader:
@@ -162,57 +159,47 @@ public class ItemsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 // cast holder
                 final FeedFacebookViewHolder feedFacebookViewHolder = (FeedFacebookViewHolder) holder;
                 // set values
-                //// todo Nasser replace and update commented section with required data
-
                 feedFacebookViewHolder.tvProfileName.setText(celebName4 != null ? celebName4 : "");
                 feedFacebookViewHolder.tvDate.setText(date4);
                  feedFacebookViewHolder.tvText.setText(feedText4 != "null" ? feedText4 : "");
                 Picasso.with(ctx).load(urlCover4).into(feedFacebookViewHolder.ivFeed);
                 break;
             case FeedFacebookImage:
-FeedFacebookImageItem feedFacebookImageItem= (FeedFacebookImageItem) item;         // get article from item container
-FeedFacebookImage feed= (FeedFacebookImage) feedFacebookImageItem.getFeed();                // extract data from article
+FeedFacebookImageItem feedFacebookImageItem= (FeedFacebookImageItem) item;
+FeedFacebookImage feed= (FeedFacebookImage) feedFacebookImageItem.getFeed();
                 String celebName = feed.getCelebName();
                 String date = feed.getDate();
-                String feedText = feed.getText();
                 String urlCover2 = feed.getImageUrl();
                 // cast holder
                 final FeedFacebookImageViewHolder feedFacebookImageViewHolder = (FeedFacebookImageViewHolder) holder;
                 // set values
-                //// todo Nasser replace and update commented section with required data
                 feedFacebookImageViewHolder.tvProfileName.setText(celebName != null ? celebName : "");
                 feedFacebookImageViewHolder.tvDate.setText(date);
-              //  feedFacebookImageViewHolder.tvText.setText(feedText != "null" ? feedText : "");
                 Picasso.with(ctx).load(urlCover2).into(feedFacebookImageViewHolder.ivFeed);
                 break;
             case FeedFaceBookText:
-                FeedFacebookTextItem feedFacebookTextItem= (FeedFacebookTextItem) item;         // get article from item container
-                FeedFacebookText feed1= (FeedFacebookText) feedFacebookTextItem.getFeed();                // extract data from article
+                FeedFacebookTextItem feedFacebookTextItem= (FeedFacebookTextItem) item;
+                FeedFacebookText feed1= (FeedFacebookText) feedFacebookTextItem.getFeed();
                 String celebName1 = feed1.getCelebName();
                 String date1 = feed1.getDate();
                 String feedText1 = feed1.getText();
-                //String urlCover2 = feed.getImageUrl();
                 // cast holder
                 final FeedFacebookTextViewHolder feedFacebookTextViewHolder = (FeedFacebookTextViewHolder) holder;
                 // set values
-                //// todo Nasser replace and update commented section with required data
                 feedFacebookTextViewHolder.tvProfileName.setText(celebName1 != null ? celebName1 : "");
                 feedFacebookTextViewHolder.tvDate.setText(date1);
-                  feedFacebookTextViewHolder.tvText.setText(feedText1 != "null" ? feedText1 : "");
-                //Picasso.with(ctx).load(urlCover2).into(feedFacebookImageViewHolder.ivFeed);
+                feedFacebookTextViewHolder.tvText.setText(feedText1 != "null" ? feedText1 : "");
                 break;
-            //todo Nasser add the other cases
+
             case FeedTwitterImage:
                 FeedTwitterImageItem feedTwitterImageItem= (FeedTwitterImageItem) item;
                 FeedTwitterImage feed2 = (FeedTwitterImage) feedTwitterImageItem.getFeed();
                 String celebNameTwitter = feed2.getCelebName();
                 String date2 = feed2.getDate();
-                //String twitterfeedText = feed2.getText();
                 String urlCover1 = feed2.getImageUrl();
                 final FeedTwitterImageViewHolder feedTwitterImageViewHolder = (FeedTwitterImageViewHolder) holder;
                 feedTwitterImageViewHolder.tvProfileName.setText(celebNameTwitter != null ? celebNameTwitter : "");
                 feedTwitterImageViewHolder.tvDate.setText(date2);
-//                feedTwitterImageViewHolder.tvFeed.setText(twitterfeedText != "null" ? twitterfeedText : "");
                 Picasso.with(ctx).load(urlCover1).into(feedTwitterImageViewHolder.ivFeed);
                 break;
             case FeedTwitterText:
@@ -221,12 +208,10 @@ FeedFacebookImage feed= (FeedFacebookImage) feedFacebookImageItem.getFeed();    
                 String celebNameTwitter2 = feed3.getCelebName();
                 String date3 = feed3.getDate();
                 String twitterfeedText2 = feed3.getText();
-                //String urlCover = feed2.getImageUrl();
                 final FeedTwitterTextViewHolder feedTwitterTextViewHolder = (FeedTwitterTextViewHolder) holder;
                 feedTwitterTextViewHolder.tvProfileName.setText(celebNameTwitter2 != null ? celebNameTwitter2 : "");
                 feedTwitterTextViewHolder.tvDate.setText(date3);
             feedTwitterTextViewHolder.tvFeed.setText(twitterfeedText2 != "null" ? twitterfeedText2 : "");
-                //Picasso.with(ctx).load(urlCover1).into(feedTwitterImageViewHolder.ivFeed);
                 break;
        /*     case FeedFacebookVideo:
                 FeedFacebookVideoItem feedFacebookVideoItem= (FeedFacebookVideoItem) item;
@@ -272,16 +257,14 @@ feedFacebookVideoViewHolder.vvFeed.setMediaController(new android.widget.MediaCo
         }
     }
 
-//todo Nasser add FeedFacebookImageViewHolder...
 private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
     private TextView tvProfileName,tvFeed , tvDate;
-    private ImageView ivProfile,ivFeed;
+
 
     FeedTwitterTextViewHolder(final View view) {
         super(view);
         // init views
         tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
-//        ivFeed = (ImageView) view.findViewById(R.id.ivTwitterFeed);
         tvDate = (TextView) view.findViewById(R.id.tvDate);
         tvFeed = (TextView) view.findViewById(R.id.tvTwitterTextFeed);
     }
@@ -296,7 +279,6 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
         tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
         ivFeed = (ImageView) view.findViewById(R.id.ivTwitterFeed);
         tvDate = (TextView) view.findViewById(R.id.tvDate);
-     //   tvFeed = (TextView) view.findViewById(R.id.tvTwitterTextFeed);
     }
 }
 
@@ -308,7 +290,6 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
             super(view);
             // init views
             tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
-            //ivFeed = (ImageView) view.findViewById(R.id.ivFacebookImageFeed);
             tvDate = (TextView) view.findViewById(R.id.tvDate);
             tvText = (TextView) view.findViewById(R.id.tvText);
         }
@@ -327,7 +308,7 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
         }
     }
     private class FeedFacebookImageViewHolder extends RecyclerView.ViewHolder {
-    private TextView tvProfileName,tvText , tvDate;
+    private TextView tvProfileName,tvDate;
     private ImageView ivProfile,ivFeed;
 
     FeedFacebookImageViewHolder(final View view) {
@@ -336,7 +317,6 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
         tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
         ivFeed = (ImageView) view.findViewById(R.id.ivFacebookImageFeed);
         tvDate = (TextView) view.findViewById(R.id.tvDate);
-        tvText = (TextView) view.findViewById(R.id.tvText);
     }
 }
     private class FeedFacebookVideoViewHolder extends RecyclerView.ViewHolder {
@@ -354,7 +334,6 @@ private class FeedTwitterTextViewHolder extends RecyclerView.ViewHolder {
 
         }
     }
-    //testing
     private class FeedViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle,tvText , tvDate;
         private ImageView ivCover;

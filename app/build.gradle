@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.nader.starfeeds"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,6 +31,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.0.0'
     compile 'com.android.support:recyclerview-v7:24.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+
 
     testCompile 'junit:junit:4.12'
 }
