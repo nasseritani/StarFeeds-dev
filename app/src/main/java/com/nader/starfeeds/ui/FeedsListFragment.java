@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nader.starfeeds.R;
+
 import com.nader.starfeeds.components.Feed;
 import com.nader.starfeeds.components.FeedFacebook;
 import com.nader.starfeeds.components.FeedFacebookImage;

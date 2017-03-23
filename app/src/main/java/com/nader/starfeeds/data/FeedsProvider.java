@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.components.Feed;
+import com.nader.starfeeds.components.FeedFacebookImage;
 import com.nader.starfeeds.utils.InternetConnection;
 
 import java.util.ArrayList;
@@ -98,6 +99,8 @@ public class FeedsProvider {
          * @param arrayFeeds The requested data set.
          */
         void onComplete(ArrayList<Feed> arrayFeeds, int currentCount);
+        //test
+
 
         /**
          * Indicates the state of the provider.

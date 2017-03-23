@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import com.nader.starfeeds.R;
+
 import com.nader.starfeeds.components.Feed;
 import com.nader.starfeeds.components.FeedFacebook;
 import com.nader.starfeeds.components.FeedFacebookImage;
@@ -34,7 +34,6 @@ import com.nader.starfeeds.listing.LoaderItem;
 import com.nader.starfeeds.listing.ReloaderItem;
 import com.nader.starfeeds.ui.listeners.OnListListener;
 import com.nader.starfeeds.ui.tools.FeedsListAdapter;
-import com.nader.starfeeds.ui.tools.ImageAdapter;
 
 import java.util.ArrayList;
 

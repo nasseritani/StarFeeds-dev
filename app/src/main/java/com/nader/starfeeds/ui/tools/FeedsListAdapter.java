@@ -1,8 +1,6 @@
 package com.nader.starfeeds.ui.tools;
 
 import android.content.Context;
-import android.media.session.MediaController;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,10 +14,10 @@ import android.widget.VideoView;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
+
 import com.nader.starfeeds.components.FeedFacebook;
 import com.nader.starfeeds.components.FeedFacebookImage;
 import com.nader.starfeeds.components.FeedFacebookText;
-import com.nader.starfeeds.components.FeedFacebookVideo;
 import com.nader.starfeeds.components.FeedTwitterImage;
 import com.nader.starfeeds.components.FeedTwitterText;
 import com.nader.starfeeds.components.Loader;
@@ -28,7 +26,6 @@ import com.nader.starfeeds.data.NetworkErrorType;
 import com.nader.starfeeds.listing.FeedFacebookImageItem;
 import com.nader.starfeeds.listing.FeedFacebookItem;
 import com.nader.starfeeds.listing.FeedFacebookTextItem;
-import com.nader.starfeeds.listing.FeedFacebookVideoItem;
 import com.nader.starfeeds.listing.FeedTwitterImageItem;
 import com.nader.starfeeds.listing.FeedTwitterTextItem;
 import com.nader.starfeeds.listing.ListingItem;

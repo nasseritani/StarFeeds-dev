@@ -61,14 +61,14 @@ public class InternalJsonFileData {
                 JSONArray data =new JSONArray(json);
                 for (int i = 0; i < data.length(); i++) {
                     JSONObject jsonObject = data.getJSONObject(i);
-                   String feedType = jsonObject.getString("feedType");
+                    String feedType = jsonObject.getString("feedType");
                     Feed feed = null;
                     switch (feedType){
                         case "twitter_photo":
                             feed=new FeedTwitterImage(jsonObject);
                             feeds.add(feed);
                             break;
-                       case "twitter_twitter_text":
+                        case "twitter_twitter_text":
                             feed=new FeedTwitterText(jsonObject);
                             feeds.add(feed);
                             break;
@@ -81,11 +81,11 @@ public class InternalJsonFileData {
                             feeds.add(feed);
                             break;
                         //case "facebook_added_video":
-                          //  feed=new FeedFacebookVideo(jsonObject);
-                            //feeds.add(feed);
-                            //break;
+                        //  feed=new FeedFacebookVideo(jsonObject);
+                        //feeds.add(feed);
+                        //break;
                     }
-                 //   feeds.add(feed);
+                    //   feeds.add(feed);
                 }
             }
         }
@@ -96,7 +96,7 @@ public class InternalJsonFileData {
 
         listener.onResult(feeds);
     }
-     interface JSONParserListener{
+    interface JSONParserListener{
         void onResult(ArrayList<Feed> feeds);
     }
 }

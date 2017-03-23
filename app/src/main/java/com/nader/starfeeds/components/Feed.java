@@ -1,8 +1,5 @@
 package com.nader.starfeeds.components;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
 
 /**

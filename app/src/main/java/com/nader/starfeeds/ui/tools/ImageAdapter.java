@@ -7,16 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.nader.starfeeds.R;
-import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebook;
-import com.nader.starfeeds.components.FeedFacebookImage;
-import com.nader.starfeeds.listing.FeedFacebookImageItem;
 import com.nader.starfeeds.listing.FeedItem;
-import com.nader.starfeeds.listing.ListingItem;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 /**
  * Created by Nasse_000 on 3/20/2017.
