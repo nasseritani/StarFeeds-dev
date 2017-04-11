@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".SplashActivity">
     <item android:id="@+id/action_settings" android:title=""
         android:orderInCategory="100" app:showAsAction="ifRoom"
-        android:icon="@drawable/drawable_settings_icon"
+        android:icon="@drawable/ic_settings_white_24dp"
         />
 
     <item android:id="@+id/action_search"
         android:title="Search"
-        app:icon="@android:drawable/ic_menu_search"
-        app:showAsAction="ifRoom"
-        app:actionViewClass="android.support.v7.widget.SearchView" />
+        android:icon="@drawable/ic_search_black_24dp"
+        app:showAsAction="always"
+         />
 </menu>

@@ -9,6 +9,6 @@ import org.json.JSONObject;
 public class FeedTwitterText extends Feed {
 
     public FeedTwitterText(JSONObject jsonObject) throws JSONException {
-        super(FeedType.TWITTER_TEXT,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"));
+        super(FeedType.TWITTER_TEXT,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"),jsonObject.getString("imageProfile"));
     }
 }

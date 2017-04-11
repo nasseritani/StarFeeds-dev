@@ -11,7 +11,7 @@ public class FeedItem extends ListingItem {
 
     public FeedItem(Feed feed) {
         this.feed = feed;
-        setType(ListingItemType.FeedFacebookImage);
+
     }
 
     public Feed getFeed() {

@@ -59,6 +59,7 @@ public class FeedsProvider {
                 // update state
                 broadcastState(isLoading);
                 if (feeds.size()>0){
+
                     Log.i("nn","broadcast complete");
                     broadcastComplete(feeds, feeds.size());
                 }

@@ -9,7 +9,7 @@ public class FeedTwitterImage extends Feed {
     String imageUrl;
 
     public FeedTwitterImage(JSONObject jsonObject) throws JSONException {
-        super(FeedType.TWITTER_IMAGE,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"));
+        super(FeedType.TWITTER_IMAGE,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"),jsonObject.getString("imageProfile"));
         try {
             if (jsonObject.has("imageUrl")) this.imageUrl = jsonObject.getString("imageUrl");
         } catch (JSONException e) {

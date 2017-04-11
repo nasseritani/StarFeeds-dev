@@ -36,6 +36,15 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle("Settings");
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     /**

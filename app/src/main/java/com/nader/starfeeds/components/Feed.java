@@ -8,18 +8,21 @@ import java.io.Serializable;
 
 public abstract class Feed implements Serializable {
 
-    public enum FeedType{FACEBOOK_IMAGE,FACEBOOK_VIDEO, FACEBOOK_TEXT,TWITTER_IMAGE,TWITTER_TEXT,FACEBOOK,TWITTER}
+    public enum FeedType{FACEBOOK_IMAGE,FACEBOOK_VIDEO, FACEBOOK_TEXT,TWITTER_IMAGE,TWITTER_TEXT,FACEBOOK, INSTAGRAM_IMAGE, INSTAGRAM_VIDEO, TWITTER}
     private FeedType feedType;
     private String id;
     private String celebName;
     private String text;
     private String date;
-    public Feed(FeedType feedType,String id, String celebName, String text, String date)  {
+    private String profileImage;
+    String imageUrl;
+    public Feed(FeedType feedType,String id, String celebName, String text, String date,String profileImage)  {
         this.feedType = feedType;
         this.id = id;
         this.celebName = celebName;
         this.text = text;
         this.date = date;
+        this.profileImage=profileImage;
     }
 
     public String getId() {
@@ -38,6 +41,10 @@ public abstract class Feed implements Serializable {
         return date;
     }
     //test
+
+    public String getProfileImage() {
+        return profileImage;
+    }
 
     public FeedType getFeedType() {
         return feedType;

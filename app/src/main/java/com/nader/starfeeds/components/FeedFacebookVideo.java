@@ -8,19 +8,19 @@ import org.json.JSONObject;
  */
 
     public class FeedFacebookVideo extends Feed {
-        String link;
+        String videoUrl;
 
         public FeedFacebookVideo(JSONObject jsonObject) throws JSONException {
-            super(FeedType.FACEBOOK_VIDEO,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"));
+            super(FeedType.FACEBOOK_VIDEO,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"),jsonObject.getString("imageProfile"));
             try {
-                if (jsonObject.has("link")) this.link = jsonObject.getString("link");
+                if (jsonObject.has("videoUrl")) this.videoUrl = jsonObject.getString("videoUrl");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        public String getLink() {
-            return link;
+        public String getVideoUrl() {
+            return videoUrl;
         }
 
     }

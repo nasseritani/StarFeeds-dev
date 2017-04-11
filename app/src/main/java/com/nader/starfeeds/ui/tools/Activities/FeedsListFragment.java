@@ -1,4 +1,4 @@
-package com.nader.starfeeds.ui;
+package com.nader.starfeeds.ui.tools.Activities;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import com.nader.starfeeds.R;
 
 import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebook;
+import com.nader.starfeeds.components.FeedFacebookLink;
 import com.nader.starfeeds.components.FeedFacebookImage;
 import com.nader.starfeeds.components.FeedFacebookText;
 import com.nader.starfeeds.components.FeedFacebookVideo;
+import com.nader.starfeeds.components.FeedInstagramImage;
+import com.nader.starfeeds.components.FeedInstagramVideo;
+import com.nader.starfeeds.components.FeedTwitterLink;
 import com.nader.starfeeds.components.FeedTwitterImage;
 import com.nader.starfeeds.components.FeedTwitterText;
 import com.nader.starfeeds.components.Loader;
@@ -26,14 +29,17 @@ import com.nader.starfeeds.listing.FeedFacebookImageItem;
 import com.nader.starfeeds.listing.FeedFacebookItem;
 import com.nader.starfeeds.listing.FeedFacebookTextItem;
 import com.nader.starfeeds.listing.FeedFacebookVideoItem;
+import com.nader.starfeeds.listing.FeedInstagramImageItem;
+import com.nader.starfeeds.listing.FeedInstagramVideoItem;
 import com.nader.starfeeds.listing.FeedItem;
 import com.nader.starfeeds.listing.FeedTwitterImageItem;
+import com.nader.starfeeds.listing.FeedTwitterItem;
 import com.nader.starfeeds.listing.FeedTwitterTextItem;
 import com.nader.starfeeds.listing.ListingItem;
 import com.nader.starfeeds.listing.LoaderItem;
 import com.nader.starfeeds.listing.ReloaderItem;
 import com.nader.starfeeds.ui.listeners.OnListListener;
-import com.nader.starfeeds.ui.tools.FeedsListAdapter;
+import com.nader.starfeeds.ui.tools.Adapters.FeedsListAdapter;
 
 import java.util.ArrayList;
 
@@ -113,17 +119,29 @@ public class FeedsListFragment extends Fragment {
                 case FACEBOOK_VIDEO:
                     FeedFacebookVideoItem feedFacebookVideoItem=new FeedFacebookVideoItem((FeedFacebookVideo) a.getFeed());
                     newListingItems.add(feedFacebookVideoItem);
-                    break;
+                   break;
                 case FACEBOOK_TEXT:
                     FeedFacebookTextItem feedFacebookTextItem=new FeedFacebookTextItem((FeedFacebookText) a.getFeed());
                     newListingItems.add(feedFacebookTextItem);
                     break;
                 case FACEBOOK:
-                    FeedFacebookItem feedFacebookItem=new FeedFacebookItem((FeedFacebook) a.getFeed());
+                    FeedFacebookItem feedFacebookItem=new FeedFacebookItem((FeedFacebookLink) a.getFeed());
                     newListingItems.add(feedFacebookItem);
                     break;
-                case TWITTER:
+                case INSTAGRAM_IMAGE:
+                    FeedInstagramImageItem feedInstagramImageItem=new FeedInstagramImageItem((FeedInstagramImage) a.getFeed());
+                    newListingItems.add(feedInstagramImageItem);
                     break;
+                case INSTAGRAM_VIDEO:
+                    FeedInstagramVideoItem feedInstagramVideoItem=new FeedInstagramVideoItem((FeedInstagramVideo) a.getFeed());
+                    newListingItems.add(feedInstagramVideoItem);
+                    break;
+
+                case TWITTER:
+                    FeedTwitterItem feedTwitterItem=new FeedTwitterItem((FeedTwitterLink) a.getFeed());
+                    newListingItems.add(feedTwitterItem);
+                    break;
+
             }
         }
         return newListingItems;

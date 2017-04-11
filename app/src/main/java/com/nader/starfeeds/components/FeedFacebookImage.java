@@ -11,7 +11,7 @@ public class FeedFacebookImage extends Feed {
     String imageUrl;
 
     public FeedFacebookImage(JSONObject jsonObject) throws JSONException {
-        super(FeedType.FACEBOOK_IMAGE,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"));
+        super(FeedType.FACEBOOK_IMAGE,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"),jsonObject.getString("imageProfile"));
         try {
             if (jsonObject.has("imageUrl")) this.imageUrl = jsonObject.getString("imageUrl");
         } catch (JSONException e) {

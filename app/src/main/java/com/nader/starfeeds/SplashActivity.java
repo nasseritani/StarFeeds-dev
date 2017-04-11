@@ -9,7 +9,7 @@ import android.util.Log;
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.authentication.AuthenticationActivity;
 import com.nader.starfeeds.data.SessionManager;
-import com.nader.starfeeds.ui.MainViewActivity;
+import com.nader.starfeeds.ui.tools.Activities.MainViewActivity;
 
 /**
  * Activity class which is started first, and controls the base flow

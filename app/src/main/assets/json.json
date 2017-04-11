@@ -1,18 +1,58 @@
-// 20170308123236
-// http://localhost:8000/user-feeds/10
 
 [
   {
     "platform": "Twitter",
     "feedType": "twitter_photo",
-    "id": "838448283919994882",
+    "id": "83844828391994882",
     "celebName": "Cristiano Ronaldo",
-    "text": "Training ???? https://t.co/7erxmUeUwY",
+    "text": "Training ????",
     "imageUrl": "http://pbs.twimg.com/media/C6LEQ9AWYAM-Wdh.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
     "link": null,
     "date": "05 Mar 2017 17:57:03",
     "timestamp": 1488736623
   },
+  {
+    "platform": "Twitter",
+    "feedType": "twitter_shared_story",
+    "id": "838448283919994882",
+    "celebName": "Cristiano Ronaldo",
+    "text": "Training ???? https://t.co/7erxmUeUwY",
+    "imageUrl": "http://pbs.twimg.com/media/C6LEQ9AWYAM-Wdh.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
+    "link": "Realmadrid.com",
+    "linkDescription":"Watch Realmadrid Stars training",
+    "date": "05 Mar 2017 17:57:03",
+    "timestamp": 1488736623
+  },
+
+  {
+    "platform": "Instagram",
+    "feedType": "Instagram_photo",
+    "id": "3",
+    "count": "150",
+    "celebName": "Nancy Ajram",
+    "text": "",
+    "imageUrl": "https://scontent-atl3-1.cdninstagram.com/t51.2885-15/s640x640/e15/17595880_284384295319242_2966390485209317376_n.jpg",
+    "imageProfile":"https://ig-s-a-a.akamaihd.net/hphotos-ak-xta1/t51.2885-19/s150x150/17595837_1641605812523436_210204499854229504_a.jpg",
+    "link": "http://instagr.am/p/D/",
+    "date": "05 Mar 2017 17:57:03",
+    "timestamp": 1279340983
+  },
+  {
+  "platform": "Instagram",
+  "feedType": "Instagram_video",
+  "id": "4",
+  "count": "100",
+  "celebName": "Nancy Ajram",
+  "text": "Nice Worlds from this star #dsdsda hotmail.com uohijiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
+    "imageProfile":"https://ig-s-a-a.akamaihd.net/hphotos-ak-xta1/t51.2885-19/s150x150/17595837_1641605812523436_210204499854229504_a.jpg",
+  "link": "http://instagr.am/p/D/",
+  "date": "05 Mar 2017 17:57:03",
+  "timestamp": 1279340983
+}
+,
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
@@ -20,6 +60,19 @@
     "celebName": "Cristiano Ronaldo",
     "text": "Training ????",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/17155591_10155170464197164_6639081427532398965_n.jpg?oh=d618714c1ffe02d92b9415ec23ef6357&oe=5935B731",
+    "imageProfile":"https://fb-s-a-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/14907041_10154792932057164_6697174159427271111_n.jpg?oh=b4b1fd3f238f079c404905c9d99712d3&oe=5999EF24&__gda__=1498495744_79cbd0409e6722bfbfe6ea0877abe696",
+    "link": "https://www.facebook.com/Cristiano/photos/a.407367867163.178908.81221197163/10155170464197164/?type=3",
+    "date": "05 Mar 2017 17:56:30",
+    "timestamp": 1488736590
+  },
+  {
+    "platform": "Facebook",
+    "feedType": "facebook_facebook_text",
+    "id": "8122119716310155170464197164",
+    "celebName": " Nancy Ajram",
+    "text": " A great event at the Merit Hotel Cyprus last night...#nancyajram#hassabeek#nancy9",
+    "imageUrl":null,
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/17425082_10155352974920934_6902866469192664129_n.jpg?oh=56b5c6021537ecce64897a8c4f512e42&oe=594E7953&__gda__=1502807671_640c19d823e78fb4d68985fc15105993",
     "link": "https://www.facebook.com/Cristiano/photos/a.407367867163.178908.81221197163/10155170464197164/?type=3",
     "date": "05 Mar 2017 17:56:30",
     "timestamp": 1488736590
@@ -27,21 +80,24 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_shared_story",
-    "id": "25432690933_10155257172910934",
-    "celebName": "Nancy Ajram",
-    "text": "«·ÂÊ« Ì« Õ»Ì»Ï «·ÂÊ« √”—«— ... ÕÌ—… Ê€Ì—… Ê‘Êﬁ Ê‰«—\n ”√· ﬂÌ› »€«— ⁄·Ìﬂ ... Êﬁ·»ﬂ ⁄·„ ﬁ·»Ï Ì€«—\nRequested by: @moiseshijazi",
-    "imageUrl": "https://fbexternal-a.akamaihd.net/safe_image.php?d=AQDFD84Y2xllSRLJ&w=360&h=360&url=https%3A%2F%2Fi.ytimg.com%2Fvi%2FD_hH-bn5dD0%2Fhqdefault.jpg&cfs=1&sx=0&sy=0&sw=360&sh=360&_nc_hash=AQDC02-j3Au7zzYB",
-    "link": "https://www.youtube.com/watch?v=D_hH-bn5dD0",
+    "id": "2543269033_10155257172910934",
+    "celebName": "Goal.com  ",
+    "text": "A little help from the linesman helped Real Madrid C.F. in a muted start to April. By Ben Hayward",
+    "imageUrl": "http://ep01.epimg.net/deportes/imagenes/2017/04/02/actualidad/1491147524_245406_1491147661_noticiarelacionadaprincipal_normal.jpg",
+    "link": "goal.com",
+    "imageProfile":"https://fb-s-d-a.akamaihd.net/h-ak-xlp1/v/t1.0-1/p200x200/17457865_10154875760653598_7493238669057971069_n.png?oh=81e6daadbe206d1bbb3a90becdf5d761&oe=595244B7&__gda__=1498235064_c8a7799d2f6d0aaee9389852b3f11f3a",
     "date": "05 Mar 2017 17:00:13",
+    "linkDescription":"Off colour and offside - Madrid start slowly in month of tough tests",
     "timestamp": 1488733213
   },
   {
     "platform": "Twitter",
     "feedType": "twitter_twitter_text",
-    "id": "838426924435177473",
+    "id": "83842694435177473",
     "celebName": "jennifer lopez",
     "text": "See you then! #ShadesOfBlue #ShadesOfPress Continues! https://t.co/7dRr9nFE4p",
     "imageUrl": null,
+    "imageProfile":"https://pbs.twimg.com/profile_images/829420494449475585/sMx85LLI_400x400.jpg",
     "link": null,
     "date": "05 Mar 2017 16:32:10",
     "timestamp": 1488731530
@@ -49,32 +105,35 @@
   {
     "platform": "Twitter",
     "feedType": "twitter_photo",
-    "id": "838426022382968832",
+    "id": "83846022382968832",
     "celebName": "jennifer lopez",
     "text": "It's here! #ShadesOfBlue premieres TONIGHT on @nbc @ 10pm EST. Grab ur friends &amp; watch!  @dreadematteo @EGTisme ???? https://t.co/rN8eq6CLtv",
     "imageUrl": "http://pbs.twimg.com/ext_tw_video_thumb/838425987381501952/pu/img/bnW4DxshMNEcsXe6.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/829420494449475585/sMx85LLI_400x400.jpg",
+    "link": null,
+    "date": "05 Mar 2017 16:28:35",
+    "timestamp": 1488731315
+  },
+  {
+    "platform": "Twitter",
+    "feedType": "twitter_photo",
+    "id": "8382602238296883",
+    "celebName": "Cristiano Ronaldo",
+    "text": "Happy and honored to have my name given to the Madeira airport! ‚úàÔ∏èüëç",
+    "imageUrl": "https://pbs.twimg.com/media/C8GTps1XwAAzu2w.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
     "link": null,
     "date": "05 Mar 2017 16:28:35",
     "timestamp": 1488731315
   },
   {
     "platform": "Facebook",
-    "feedType": "facebook_shared_story",
-    "id": "25432690933_10155257174480934",
-    "celebName": "Nancy Ajram",
-    "text": "„‘ «ﬁ… ·Ìﬂ ‘Êﬁ «·ÂÊÏ ·—ÊÕÌ\nÊ ÕÌ«… ⁄Ì‰Ìﬂ œ«»  «‰« —ÊÕÌ\n„‰ “„«‰ „‘ «ﬁ… «‰« «‘Ê›ﬂ\nÌ« “„«‰ «—Ã⁄·Ì »Ê’Ê›ﬂ \nRequested by: @mohammed1992jr",
-    "imageUrl": "https://fbexternal-a.akamaihd.net/safe_image.php?w=360&h=360&url=https%3A%2F%2Fi.ytimg.com%2Fvi%2FIqdyirMu84Y%2Fhqdefault.jpg&cfs=1&sx=0&sy=0&sw=360&sh=360&_nc_hash=AQAAtpLrQwasXSZZ",
-    "link": "https://www.youtube.com/watch?v=IqdyirMu84Y",
-    "date": "04 Mar 2017 20:00:32",
-    "timestamp": 1488657632
-  },
-  {
-    "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "25432690933_10155275754930934",
+    "id": "2532690933_10155275754930934",
     "celebName": "Nancy Ajram",
-    "text": null,
-    "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/17098446_10155275754930934_5652127921183024195_n.jpg?oh=e02009f6b5ad2d5187ac043d811f75e2&oe=59683FCB",
+    "text":" El Hob Zay El Watar lyric video will be on YouTube in 1 hour!! Subscribe www.YouTube.com/NancyAjram #HassaBeek #ElHobZayElWatar #Nancy9",
+    "imageUrl": "https://fb-s-d-a.akamaihd.net/h-ak-xap1/v/t1.0-0/p320x320/17553694_10155366217965934_5639536003997804276_n.jpg?oh=28ba383241a69b0040a2ec63d38a90d5&oe=5966D25F&__gda__=1502777145_bebb7a5c328486006b3d14b85055ec87",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/17425082_10155352974920934_6902866469192664129_n.jpg?oh=56b5c6021537ecce64897a8c4f512e42&oe=594E7953&__gda__=1502807671_640c19d823e78fb4d68985fc15105993",
     "link": "https://www.facebook.com/NancyAjram/photos/a.10155275754465934.1073741943.25432690933/10155275754930934/?type=3",
     "date": "04 Mar 2017 16:40:53",
     "timestamp": 1488645653
@@ -82,10 +141,11 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "5170395767_10155029751885768",
+    "id": "570395767_10155029751885768",
     "celebName": "jennifer lopez",
     "text": "Here. We. Go. #ShadesOfBlue",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t31.0-8/s720x720/17039412_10155029751885768_9003248305138563341_o.jpg?oh=7b3a75044899a96099016602044fdf19&oe=5972A4DF",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xtp1/v/t1.0-1/p200x200/16473165_10154959208190768_2310622216692650056_n.jpg?oh=5472cf9867315159c524fd5f66d954bb&oe=5996DE46&__gda__=1499166765_3d3de924e5ec22e85be3961842662fef",
     "link": "https://www.facebook.com/jenniferlopez/photos/a.207245160767.130755.5170395767/10155029751885768/?type=3",
     "date": "04 Mar 2017 16:16:54",
     "timestamp": 1488644214
@@ -93,21 +153,24 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_video",
-    "id": "5170395767_10155029745175768",
+    "id": "517095767_10155029745175768",
     "celebName": "jennifer lopez",
     "text": "#AStormIsComing...Are you ready? #ShadesOfBlue returns TOMORROW night on NBC",
     "imageUrl": "https://fb-s-d-a.akamaihd.net/h-ak-xtf1/v/t15.0-10/s720x720/17140666_10155029745855768_2904635903534170112_n.jpg?oh=ce58a2c9d59d9bef7e6dfeb10780f98a&oe=59726158&__gda__=1496324441_6914c1e7dc9a4f61dcee5bd79cedb6ed",
     "link": "https://www.facebook.com/jenniferlopez/videos/10155029745175768/",
+    "videoUrl":"http://www.youtube.com/watch?v=VA770wpLX-Q&feature=youtube_gdata_player",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xtp1/v/t1.0-1/p200x200/16473165_10154959208190768_2310622216692650056_n.jpg?oh=5472cf9867315159c524fd5f66d954bb&oe=5996DE46&__gda__=1499166765_3d3de924e5ec22e85be3961842662fef",
     "date": "04 Mar 2017 16:14:12",
     "timestamp": 1488644052
   },
   {
     "platform": "Twitter",
     "feedType": "twitter_photo",
-    "id": "838020291867607041",
+    "id": "83820291867607041",
     "celebName": "Cristiano Ronaldo",
     "text": "VAMOS EQUIPO. HALA MADRID ???? https://t.co/Pnvi8Q4PO0",
     "imageUrl": "http://pbs.twimg.com/media/C6E_AqaWgAIV1jU.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
     "link": null,
     "date": "04 Mar 2017 13:36:21",
     "timestamp": 1488634581
@@ -115,10 +178,11 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "81221197163_10155166884237164",
+    "id": "8121197163_10155166884237164",
     "celebName": "Cristiano Ronaldo",
     "text": "VAMOS EQUIPO. HALA MADRID ????",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/17103746_10155166884237164_3144227309653189640_n.jpg?oh=f4cb4dceb8c3745522c87a56429ce6e5&oe=5939CE4D",
+    "imageProfile":"https://fb-s-a-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/14907041_10154792932057164_6697174159427271111_n.jpg?oh=b4b1fd3f238f079c404905c9d99712d3&oe=5999EF24&__gda__=1498495744_79cbd0409e6722bfbfe6ea0877abe696",
     "link": "https://www.facebook.com/Cristiano/photos/a.407367867163.178908.81221197163/10155166884237164/?type=3",
     "date": "04 Mar 2017 13:35:53",
     "timestamp": 1488634553
@@ -126,10 +190,11 @@
   {
     "platform": "Twitter",
     "feedType": "twitter_photo",
-    "id": "837366699179540480",
+    "id": "87366699179540480",
     "celebName": "Cristiano Ronaldo",
     "text": "To be a champion, you need the best. @Xtrade will give you the right tools to start with. https://t.co/wF7n2MNbE9 https://t.co/qs3N7u9BZm",
     "imageUrl": "http://pbs.twimg.com/ext_tw_video_thumb/837365793927090176/pu/img/gMvbHNqzTIGoM8bA.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
     "link": null,
     "date": "02 Mar 2017 18:19:13",
     "timestamp": 1488478753
@@ -137,10 +202,12 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_video",
-    "id": "81221197163_10155161429592164",
+    "id": "8221197163_10155161429592164",
     "celebName": "Cristiano Ronaldo",
     "text": "To be a champion, you need the best. XTrade will give you the right tools to start with. http://bit.ly/2lWl8I2",
     "imageUrl": "https://fb-s-c-a.akamaihd.net/h-ak-xpt1/v/t15.0-10/s720x720/17118566_10155161448712164_4373621452998443008_n.jpg?oh=fd5e67e25be71a38037f7b030b34d7f5&oe=59350003&__gda__=1500621019_95de7649fc3487b827788acdc5f17cd8",
+    "videoUrl":"https://www.facebook.com/goal/videos/10154893699173598/",
+    "imageProfile":"https://fb-s-a-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/14907041_10154792932057164_6697174159427271111_n.jpg?oh=b4b1fd3f238f079c404905c9d99712d3&oe=5999EF24&__gda__=1498495744_79cbd0409e6722bfbfe6ea0877abe696",
     "link": "https://www.facebook.com/Cristiano/videos/10155161429592164/",
     "date": "02 Mar 2017 18:17:18",
     "timestamp": 1488478638
@@ -148,10 +215,12 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_video",
-    "id": "7961985974_10154416428355975",
+    "id": "961985974_10154416428355975",
     "celebName": "Selena Gomez",
     "text": "You can't bury the truth. 13 Reasons Why arrives March 31 on Netflix.",
     "imageUrl": "https://fb-s-d-a.akamaihd.net/h-ak-xap1/v/t15.0-10/p720x720/17037067_10154416441620975_2254068389641191424_n.jpg?oh=609804456b075aca987ab2c0f70e7371&oe=5935A096&__gda__=1496048683_50e7327f2b3395ba0ef069168324a9b8",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xta1/v/t1.0-1/c24.0.192.192/p240x240/16708503_10154373240565975_4331569250410434827_n.jpg?oh=036abcbca7baaa8302edc2aaddbf8f31&oe=5964D88E&__gda__=1503135173_61001cc78512738e2e05ff1e49f2c7f8",
+    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
     "link": "https://www.facebook.com/Selena/videos/10154416428355975/",
     "date": "02 Mar 2017 00:06:05",
     "timestamp": 1488413165
@@ -159,10 +228,11 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "5170395767_10155018358860768",
+    "id": "170395767_10155018358860768",
     "celebName": "jennifer lopez",
     "text": "Walking Through #ShadesOfBlue Premiere Week Like...\nTell Me Who You'll Be Watching With On SUDAY! #SeasonTWO #SundayMarch5th #NBC",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/17022078_10155018358860768_7178839982186909101_n.jpg?oh=be71dcd97ac208e50d48864a4e3fce6a&oe=59254BD9",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xtp1/v/t1.0-1/p200x200/16473165_10154959208190768_2310622216692650056_n.jpg?oh=5472cf9867315159c524fd5f66d954bb&oe=5996DE46&__gda__=1499166765_3d3de924e5ec22e85be3961842662fef",
     "link": "https://www.facebook.com/jenniferlopez/photos/a.207245160767.130755.5170395767/10155018358860768/?type=3",
     "date": "28 Feb 2017 17:40:49",
     "timestamp": 1488303649
@@ -170,43 +240,25 @@
   {
     "platform": "Twitter",
     "feedType": "twitter_photo",
-    "id": "836538579421626372",
+    "id": "36538579421626372",
     "celebName": "Cristiano Ronaldo",
     "text": "???? https://t.co/iEeVY8TnNg",
     "imageUrl": "http://pbs.twimg.com/media/C5v7ZYgWQAAfzCf.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/795538317211299844/ShNKtUmK_400x400.jpg",
     "link": null,
     "date": "28 Feb 2017 11:28:34",
     "timestamp": 1488281314
   },
-  {
-    "platform": "Twitter",
-    "feedType": "twitter_twitter_text",
-    "id": "836496112206942208",
-    "celebName": "Nancy Ajram",
-    "text": "√Õ—¯  ⁄«“Ì‰« »Ê›«… «·Õ«Ã ‰ﬁÊ·« «··Â Ì—Õ„Â Ê ﬂÊ‰ ‰›”Â »«·”„«¡ ÊÌ’»—ﬂ„ ⁄·Ï ›—«ﬁÂ???? @najwakaram",
-    "imageUrl": null,
-    "link": null,
-    "date": "28 Feb 2017 08:39:49",
-    "timestamp": 1488271189
-  },
-  {
-    "platform": "Twitter",
-    "feedType": "twitter_photo",
-    "id": "835596541578653697",
-    "celebName": "Nancy Ajram",
-    "text": "#«—«»_«ÌœÊ· #‰«‰”Ì_⁄Ã—„ #«„_»Ì_”Ì https://t.co/ImwXjILobd",
-    "imageUrl": "http://pbs.twimg.com/media/C5iimd3XMAM8d0-.jpg",
-    "link": null,
-    "date": "25 Feb 2017 21:05:14",
-    "timestamp": 1488056714
-  },
+
+
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "176063032413299_1730128290340091",
+    "id": "16063032413299_1730128290340091",
     "celebName": "Lionel Messi",
     "text": "?? Madrid",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/16996221_1730128290340091_4167815879998726421_n.jpg?oh=2dcee288ef8343440cdf79e970e158bc&oe=59667FC8",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xaf1/v/t1.0-1/c78.0.200.200/p200x200/11914017_939833412747917_359718677020848532_n.jpg?oh=b66d2986b52f95e18c08a186feb2c4ec&oe=594D6F0E&__gda__=1498992279_ae86284b75ce9dd3a75e146b182cec33",
     "link": "https://www.facebook.com/LeoMessi/photos/a.301943896491878.81719.176063032413299/1730128290340091/?type=3",
     "date": "25 Feb 2017 20:22:33",
     "timestamp": 1488054153
@@ -214,10 +266,11 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "176063032413299_1729049423781311",
+    "id": "17063032413299_1729049423781311",
     "celebName": "Lionel Messi",
     "text": "Ay?danos a vencer al c?ncer infantil: paralosvalientes.com \n\nHelp us to beat childhood cancer: paralosvalientes.com\n\n#ParaLosValientes\n\n- LIO",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/p720x720/16864658_1729049423781311_5529495132435263804_n.png?oh=5aed113410860c4a8c178b102a13322c&oe=59341573",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xaf1/v/t1.0-1/c78.0.200.200/p200x200/11914017_939833412747917_359718677020848532_n.jpg?oh=b66d2986b52f95e18c08a186feb2c4ec&oe=594D6F0E&__gda__=1498992279_ae86284b75ce9dd3a75e146b182cec33",
     "link": "https://www.facebook.com/LeoMessi/photos/a.301943896491878.81719.176063032413299/1729049423781311/?type=3",
     "date": "24 Feb 2017 20:13:46",
     "timestamp": 1487967226
@@ -225,10 +278,11 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "176063032413299_1728687203817533",
+    "id": "1760630324132_1728687203817533",
     "celebName": "Lionel Messi",
     "text": "paralosvalientes.com",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/16938663_1728687203817533_5877649311511850401_n.png?oh=d7cb0f7b651dc898ff1a5b413a724adf&oe=5938E89E",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xaf1/v/t1.0-1/c78.0.200.200/p200x200/11914017_939833412747917_359718677020848532_n.jpg?oh=b66d2986b52f95e18c08a186feb2c4ec&oe=594D6F0E&__gda__=1498992279_ae86284b75ce9dd3a75e146b182cec33",
     "link": "https://www.facebook.com/LeoMessi/photos/a.190152614337674.48442.176063032413299/1728687203817533/?type=3",
     "date": "24 Feb 2017 11:41:01",
     "timestamp": 1487936461
@@ -236,32 +290,24 @@
   {
     "platform": "Twitter",
     "feedType": "twitter_twitter_text",
-    "id": "832293884990349314",
+    "id": "83229388499049314",
     "celebName": "Selena Gomez",
-    "text": "To celebrate #ItAintMe, @KygoMusic and I took over the Teen Party playlist on @Spotify. Listen to our picks here:Ö https://t.co/5BGwbdiSxj",
+    "text": "To celebrate #ItAintMe, @KygoMusic and I took over the Teen Party playlist on @Spotify. Listen to our picks here:ÔøΩ https://t.co/5BGwbdiSxj",
     "imageUrl": null,
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xta1/v/t1.0-1/c24.0.192.192/p240x240/16708503_10154373240565975_4331569250410434827_n.jpg?oh=036abcbca7baaa8302edc2aaddbf8f31&oe=5964D88E&__gda__=1503135173_61001cc78512738e2e05ff1e49f2c7f8",
     "link": null,
     "date": "16 Feb 2017 18:21:40",
     "timestamp": 1487269300
   },
-  {
-    "platform": "Facebook",
-    "feedType": "facebook_shared_story",
-    "id": "7961985974_10154380548085975",
-    "celebName": "Selena Gomez",
-    "text": null,
-    "imageUrl": null,
-    "link": null,
-    "date": "16 Feb 2017 05:10:32",
-    "timestamp": 1487221832
-  },
+
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
-    "id": "7961985974_10154380511140975",
+    "id": "7961985974_154380511140975",
     "celebName": "Selena Gomez",
     "text": "Get 'It Ain't Me' out now:\niTunes:   http://smarturl.it/ItAintMe \nSpotify: http://smarturl.it/ItAintMe.sp",
     "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/16730454_10154380511140975_6842944461019359556_n.jpg?oh=d3524b64e42b99f28fb177c22f5ab5d2&oe=593625C3",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xta1/v/t1.0-1/c24.0.192.192/p240x240/16708503_10154373240565975_4331569250410434827_n.jpg?oh=036abcbca7baaa8302edc2aaddbf8f31&oe=5964D88E&__gda__=1503135173_61001cc78512738e2e05ff1e49f2c7f8",
     "link": "https://www.facebook.com/Selena/photos/a.10150609140610975.385818.7961985974/10154380511140975/?type=3",
     "date": "16 Feb 2017 05:03:01",
     "timestamp": 1487221381
@@ -269,21 +315,38 @@
   {
     "platform": "Facebook",
     "feedType": "facebook_shared_story",
-    "id": "81512169979_10150824680509980",
-    "celebName": "Tom Cruise",
-    "text": null,
-    "imageUrl": "https://scontent.xx.fbcdn.net/v/t1.0-9/s720x720/15977235_1200585266656730_6835973098943069838_n.jpg?oh=7440265a590f564a0375f2f0e89b4da3&oe=59710C7C",
-    "link": "https://www.facebook.com/JackReacherMovie/photos/a.407665032615428.82841.377913978923867/1200585266656730/?type=3",
+    "id": "81512169979_1015082480509980",
+    "celebName": "Manchester United",
+    "text": "Get ready for midweek Premier League action!",
+    "imageUrl": "http://www.manutd.com/sitecore/shell/~/media/303A5512FAFA4B57BD724008F2F8183F.ashx?w=1280&h=720&rgn=260,580,1726,1406",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xpt1/v/t1.0-1/p200x200/16473924_10154471006092746_6242863207915608429_n.jpg?oh=017909bb3a96b3e0d99a5e6cbda3ddd9&oe=59640DED&__gda__=1498966226_2da4ae982b76dd16dc922cd0dd746b89",
+    "link": "manchesterunited.com",
+    "linkDescription":"PREVIEW: MANCHESTER UNITED V EVERTON",
+    "date": "17 Jan 2017 19:20:46",
+    "timestamp": 1484680846
+  },
+  {
+    "platform": "Twitter",
+    "feedType": "twitter_shared_story",
+    "id": "2",
+    "celebName": "Wired",
+    "text": "This week offered more concerning reminders of the internets deep secuirty flaws",
+    "imageUrl": "https://pbs.twimg.com/card_img/848133256415297537/LFKSkS_o?format=jpg&name=600x314",
+    "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xaf1/v/t1.0-1/c78.0.200.200/p200x200/11914017_939833412747917_359718677020848532_n.jpg?oh=b66d2986b52f95e18c08a186feb2c4ec&oe=594D6F0E&__gda__=1498992279_ae86284b75ce9dd3a75e146b182cec33",
+    "link": "wired.com",
+    "linkDescription":"Security News This Week: Yes,Even Internet connected",
     "date": "17 Jan 2017 19:20:46",
     "timestamp": 1484680846
   },
   {
     "platform": "Facebook",
     "feedType": "facebook_added_video",
-    "id": "81512169979_10150802051529980",
+    "id": "81512169979_1015080051529980",
     "celebName": "Tom Cruise",
     "text": "I have something special for my fans today - an exclusive behind-the-scenes peek at my new movie, The Mummy",
     "imageUrl": "https://fb-s-b-a.akamaihd.net/h-ak-xft1/v/t15.0-10/s720x720/15320035_10150802066579980_3690389355609718784_n.jpg?oh=cdb4651964a1d48de6cc3064be37934e&oe=5929B86F&__gda__=1495590684_c6e53524939f2d764294e3eadca727cb",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c0.0.200.200/p200x200/11351261_10150581634174980_8970167313412859905_n.jpg?oh=83e4e2b146b4c3f1a218bb568d1cad32&oe=595C7CD2&__gda__=1499036199_b3a2471568a8401df0ac67411b280cbd",
+    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
     "link": "https://www.facebook.com/officialtomcruise/videos/10150802051529980/",
     "date": "05 Dec 2016 15:01:21",
     "timestamp": 1480950081
@@ -295,6 +358,7 @@
     "celebName": "Tom Cruise",
     "text": "I have something special for my fans today - an exclusive behind-the-scenes peek at my new movie, #TheMummy. https://t.co/cKn9flF3c5",
     "imageUrl": "http://pbs.twimg.com/media/Cy65jvJVEAApmZc.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/603269306026106880/42CwEF4n_400x400.jpg",
     "link": null,
     "date": "05 Dec 2016 15:00:19",
     "timestamp": 1480950019
@@ -304,8 +368,10 @@
     "feedType": "facebook_added_video",
     "id": "81512169979_10150801858614980",
     "celebName": "Tom Cruise",
-    "text": "Check out the first trailer for The Mummy. Iím excited for you to see this new world of gods and monsters.",
+    "text": "Check out the first trailer for The Mummy. IÔøΩm excited for you to see this new world of gods and monsters.",
     "imageUrl": "https://fb-s-a-a.akamaihd.net/h-ak-xat1/v/t15.0-10/s720x720/15318722_10150801867034980_7513820541598302208_n.jpg?oh=118c082215b190dc4210c6c87250c255&oe=5930F516&__gda__=1497194333_d5be440c77cbd9d95cd2f412d7fd8626",
+    "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c0.0.200.200/p200x200/11351261_10150581634174980_8970167313412859905_n.jpg?oh=83e4e2b146b4c3f1a218bb568d1cad32&oe=595C7CD2&__gda__=1499036199_b3a2471568a8401df0ac67411b280cbd",
+    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
     "link": "https://www.facebook.com/officialtomcruise/videos/10150801858614980/",
     "date": "05 Dec 2016 02:26:48",
     "timestamp": 1480904808
@@ -315,8 +381,9 @@
     "feedType": "twitter_photo",
     "id": "805598741554151424",
     "celebName": "Tom Cruise",
-    "text": "Check out the first trailer for #TheMummy. Iím excited for you to see this new world of gods and monsters. https://t.co/eZepLcf2f8",
+    "text": "Check out the first trailer for #TheMummy. IÔøΩm excited for you to see this new world of gods and monsters. https://t.co/eZepLcf2f8",
     "imageUrl": "http://pbs.twimg.com/ext_tw_video_thumb/805597664339369984/pu/img/-hgiTLc6S-1Gj8Ub.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/603269306026106880/42CwEF4n_400x400.jpg",
     "link": null,
     "date": "05 Dec 2016 02:24:41",
     "timestamp": 1480904681
@@ -326,8 +393,9 @@
     "feedType": "twitter_photo",
     "id": "804327649694912513",
     "celebName": "Tom Cruise",
-    "text": "Iím excited to help bring #TheMummy to life. I canít wait for you guys to see the full trailer Sunday. https://t.co/GRbZYdIjFe",
+    "text": "IÔøΩm excited to help bring #TheMummy to life. I canÔøΩt wait for you guys to see the full trailer Sunday. https://t.co/GRbZYdIjFe",
     "imageUrl": "http://pbs.twimg.com/ext_tw_video_thumb/804327378436689920/pu/img/WJNj-Sbd3Iuka_Mq.jpg",
+    "imageProfile":"https://pbs.twimg.com/profile_images/603269306026106880/42CwEF4n_400x400.jpg",
     "link": null,
     "date": "01 Dec 2016 14:13:50",
     "timestamp": 1480601630

@@ -1,8 +1,5 @@
-package com.nader.starfeeds.ui;
+package com.nader.starfeeds.ui.tools.Activities;
 
-import android.app.SearchManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -20,7 +17,6 @@ import android.view.MenuItem;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
-import com.nader.starfeeds.Search.SearchActivity;
 import com.nader.starfeeds.settings.SettingsActivity;
 
 import java.util.ArrayList;
@@ -58,13 +54,14 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_explore_black_24dp);
-        //tabLayout.getTabAt(2).setIcon(ICONS[2]);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_home_black_24dp);
     }
 //Setting up viewpager with its adapter
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FeedsListFragment(),"");
-        adapter.addFragment(new TwoFragment(), "");
+        adapter.addFragment(new ExploreFragment(), "");
+        adapter.addFragment(new FragmentNull(),"");
         viewPager.setAdapter(adapter);
     }
 
@@ -112,13 +109,7 @@ return false;
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView =
-                (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(new ComponentName(this,SearchActivity.class)));
-        searchView.setOnQueryTextListener(this);
+
 
 
         return true;
@@ -131,11 +122,12 @@ return false;
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
         }
-       // if(id==R.id.action_search){
+        if(id==R.id.action_search){
 
-         //   Intent intent = new Intent(this, SearchActivity.class);
-           // startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
-       // }
+            Intent intent = new Intent(this, SearchExpandActivity.class);
+            startActivityForResult(intent, Configuration.AUTHENTICATION_REQUEST);
+
+        }
         return super.onOptionsItemSelected(item);
     }
 

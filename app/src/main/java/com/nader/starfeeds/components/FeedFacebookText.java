@@ -10,6 +10,6 @@ import org.json.JSONObject;
 public class FeedFacebookText extends Feed {
 
     public FeedFacebookText(JSONObject jsonObject) throws JSONException {
-        super(FeedType.FACEBOOK_TEXT,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"));
+        super(FeedType.FACEBOOK_TEXT,jsonObject.getString("id"),jsonObject.getString("celebName"),jsonObject.getString("text"),jsonObject.getString("date"),jsonObject.getString("imageProfile"));
     }
 }

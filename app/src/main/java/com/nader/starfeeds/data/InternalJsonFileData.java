@@ -1,13 +1,15 @@
 package com.nader.starfeeds.data;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebook;
+import com.nader.starfeeds.components.FeedFacebookLink;
 import com.nader.starfeeds.components.FeedFacebookImage;
 import com.nader.starfeeds.components.FeedFacebookText;
 import com.nader.starfeeds.components.FeedFacebookVideo;
+import com.nader.starfeeds.components.FeedInstagramImage;
+import com.nader.starfeeds.components.FeedInstagramVideo;
+import com.nader.starfeeds.components.FeedTwitterLink;
 import com.nader.starfeeds.components.FeedTwitterImage;
 import com.nader.starfeeds.components.FeedTwitterText;
 
@@ -72,18 +74,34 @@ public class InternalJsonFileData {
                             feed=new FeedTwitterText(jsonObject);
                             feeds.add(feed);
                             break;
+                        case "twitter_shared_story":
+                            feed=new FeedTwitterLink(jsonObject);
+                            feeds.add(feed);
+                            break;
                         case "facebook_added_photos":
                             feed=new FeedFacebookImage(jsonObject);
                             feeds.add(feed);
                             break;
                         case "facebook_shared_story":
-                            feed=new FeedFacebook(jsonObject);
+                            feed=new FeedFacebookLink(jsonObject);
                             feeds.add(feed);
                             break;
-                        //case "facebook_added_video":
-                        //  feed=new FeedFacebookVideo(jsonObject);
-                        //feeds.add(feed);
-                        //break;
+                        case "facebook_facebook_text":
+                            feed=new FeedFacebookText(jsonObject);
+                            feeds.add(feed);
+                            break;
+                        case"Instagram_photo":
+                            feed=new FeedInstagramImage(jsonObject);
+                            feeds.add(feed);
+                            break;
+                        case"Instagram_video":
+                            feed=new FeedInstagramVideo(jsonObject);
+                            feeds.add(feed);
+                            break;
+                        case "facebook_added_video":
+                            feed=new FeedFacebookVideo(jsonObject);
+                            feeds.add(feed);
+                            break;
                     }
                     //   feeds.add(feed);
                 }
