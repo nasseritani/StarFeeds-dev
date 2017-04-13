@@ -39,20 +39,20 @@
     "date": "05 Mar 2017 17:57:03",
     "timestamp": 1279340983
   },
-  {
-  "platform": "Instagram",
-  "feedType": "Instagram_video",
-  "id": "4",
-  "count": "100",
-  "celebName": "Nancy Ajram",
-  "text": "Nice Worlds from this star #dsdsda hotmail.com uohijiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
-    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
-    "imageProfile":"https://ig-s-a-a.akamaihd.net/hphotos-ak-xta1/t51.2885-19/s150x150/17595837_1641605812523436_210204499854229504_a.jpg",
-  "link": "http://instagr.am/p/D/",
-  "date": "05 Mar 2017 17:57:03",
-  "timestamp": 1279340983
-}
-,
+//  {
+//  "platform": "Instagram",
+//  "feedType": "Instagram_video",
+//  "id": "4",
+//  "count": "100",
+//  "celebName": "Nancy Ajram",
+//  "text": "Nice Worlds from this star #dsdsda hotmail.com uohijiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+//    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
+//    "imageProfile":"https://ig-s-a-a.akamaihd.net/hphotos-ak-xta1/t51.2885-19/s150x150/17595837_1641605812523436_210204499854229504_a.jpg",
+//  "link": "http://instagr.am/p/D/",
+//  "date": "05 Mar 2017 17:57:03",
+//  "timestamp": 1279340983
+//}
+
   {
     "platform": "Facebook",
     "feedType": "facebook_added_photos",
@@ -158,7 +158,7 @@
     "text": "#AStormIsComing...Are you ready? #ShadesOfBlue returns TOMORROW night on NBC",
     "imageUrl": "https://fb-s-d-a.akamaihd.net/h-ak-xtf1/v/t15.0-10/s720x720/17140666_10155029745855768_2904635903534170112_n.jpg?oh=ce58a2c9d59d9bef7e6dfeb10780f98a&oe=59726158&__gda__=1496324441_6914c1e7dc9a4f61dcee5bd79cedb6ed",
     "link": "https://www.facebook.com/jenniferlopez/videos/10155029745175768/",
-    "videoUrl":"http://www.youtube.com/watch?v=VA770wpLX-Q&feature=youtube_gdata_player",
+    "videoUrl":"http://techslides.com/demos/sample-videos/small.mp4 ",
     "imageProfile":"https://fb-s-c-a.akamaihd.net/h-ak-xtp1/v/t1.0-1/p200x200/16473165_10154959208190768_2310622216692650056_n.jpg?oh=5472cf9867315159c524fd5f66d954bb&oe=5996DE46&__gda__=1499166765_3d3de924e5ec22e85be3961842662fef",
     "date": "04 Mar 2017 16:14:12",
     "timestamp": 1488644052
@@ -206,7 +206,7 @@
     "celebName": "Cristiano Ronaldo",
     "text": "To be a champion, you need the best. XTrade will give you the right tools to start with. http://bit.ly/2lWl8I2",
     "imageUrl": "https://fb-s-c-a.akamaihd.net/h-ak-xpt1/v/t15.0-10/s720x720/17118566_10155161448712164_4373621452998443008_n.jpg?oh=fd5e67e25be71a38037f7b030b34d7f5&oe=59350003&__gda__=1500621019_95de7649fc3487b827788acdc5f17cd8",
-    "videoUrl":"https://www.facebook.com/goal/videos/10154893699173598/",
+    "videoUrl":"http://techslides.com/demos/sample-videos/small.mp4 ",
     "imageProfile":"https://fb-s-a-a.akamaihd.net/h-ak-xfp1/v/t1.0-1/p200x200/14907041_10154792932057164_6697174159427271111_n.jpg?oh=b4b1fd3f238f079c404905c9d99712d3&oe=5999EF24&__gda__=1498495744_79cbd0409e6722bfbfe6ea0877abe696",
     "link": "https://www.facebook.com/Cristiano/videos/10155161429592164/",
     "date": "02 Mar 2017 18:17:18",
@@ -220,7 +220,7 @@
     "text": "You can't bury the truth. 13 Reasons Why arrives March 31 on Netflix.",
     "imageUrl": "https://fb-s-d-a.akamaihd.net/h-ak-xap1/v/t15.0-10/p720x720/17037067_10154416441620975_2254068389641191424_n.jpg?oh=609804456b075aca987ab2c0f70e7371&oe=5935A096&__gda__=1496048683_50e7327f2b3395ba0ef069168324a9b8",
     "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xta1/v/t1.0-1/c24.0.192.192/p240x240/16708503_10154373240565975_4331569250410434827_n.jpg?oh=036abcbca7baaa8302edc2aaddbf8f31&oe=5964D88E&__gda__=1503135173_61001cc78512738e2e05ff1e49f2c7f8",
-    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
+    "videoUrl":"http://techslides.com/demos/sample-videos/small.mp4 ",
     "link": "https://www.facebook.com/Selena/videos/10154416428355975/",
     "date": "02 Mar 2017 00:06:05",
     "timestamp": 1488413165
@@ -346,7 +346,7 @@
     "text": "I have something special for my fans today - an exclusive behind-the-scenes peek at my new movie, The Mummy",
     "imageUrl": "https://fb-s-b-a.akamaihd.net/h-ak-xft1/v/t15.0-10/s720x720/15320035_10150802066579980_3690389355609718784_n.jpg?oh=cdb4651964a1d48de6cc3064be37934e&oe=5929B86F&__gda__=1495590684_c6e53524939f2d764294e3eadca727cb",
     "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c0.0.200.200/p200x200/11351261_10150581634174980_8970167313412859905_n.jpg?oh=83e4e2b146b4c3f1a218bb568d1cad32&oe=595C7CD2&__gda__=1499036199_b3a2471568a8401df0ac67411b280cbd",
-    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
+    "videoUrl":"http://techslides.com/demos/sample-videos/small.mp4 ",
     "link": "https://www.facebook.com/officialtomcruise/videos/10150802051529980/",
     "date": "05 Dec 2016 15:01:21",
     "timestamp": 1480950081
@@ -371,7 +371,7 @@
     "text": "Check out the first trailer for The Mummy. I�m excited for you to see this new world of gods and monsters.",
     "imageUrl": "https://fb-s-a-a.akamaihd.net/h-ak-xat1/v/t15.0-10/s720x720/15318722_10150801867034980_7513820541598302208_n.jpg?oh=118c082215b190dc4210c6c87250c255&oe=5930F516&__gda__=1497194333_d5be440c77cbd9d95cd2f412d7fd8626",
     "imageProfile":"https://fb-s-b-a.akamaihd.net/h-ak-xfa1/v/t1.0-1/c0.0.200.200/p200x200/11351261_10150581634174980_8970167313412859905_n.jpg?oh=83e4e2b146b4c3f1a218bb568d1cad32&oe=595C7CD2&__gda__=1499036199_b3a2471568a8401df0ac67411b280cbd",
-    "videoUrl":"https://s3.amazonaws.com/stupeflix-assets/apiusecase/video.mp4",
+    "videoUrl":"http://techslides.com/demos/sample-videos/small.mp4 ",
     "link": "https://www.facebook.com/officialtomcruise/videos/10150801858614980/",
     "date": "05 Dec 2016 02:26:48",
     "timestamp": 1480904808

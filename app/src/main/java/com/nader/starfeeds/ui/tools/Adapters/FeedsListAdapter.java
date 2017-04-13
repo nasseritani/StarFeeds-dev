@@ -303,7 +303,6 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 Uri vidUri = Uri.parse(videoFbUrl);
                 feedFacebookVideoViewHolder.vvFeed.setVideoURI(vidUri);
                 feedFacebookVideoViewHolder.vvFeed.setMediaController(mMediaController = new MediaController(ctx));
-                mMediaController.setAnchorView(feedFacebookVideoViewHolder.vvFeed);
                 mMediaController.requestFocus();
                 feedFacebookVideoViewHolder.vvFeed.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
