@@ -1,7 +1,7 @@
 package com.nader.starfeeds.listing;
 
-import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedInstagramVideo;
+import com.nader.starfeeds.data.componenets.model.Feed;
+import com.nader.starfeeds.data.componenets.model.FeedInstagramVideo;
 
 /**
  * Created by Nasse_000 on 3/31/2017.

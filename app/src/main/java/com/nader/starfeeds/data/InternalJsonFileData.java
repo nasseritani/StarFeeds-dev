@@ -2,16 +2,16 @@ package com.nader.starfeeds.data;
 
 import android.content.Context;
 
-import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebookLink;
-import com.nader.starfeeds.components.FeedFacebookImage;
-import com.nader.starfeeds.components.FeedFacebookText;
-import com.nader.starfeeds.components.FeedFacebookVideo;
-import com.nader.starfeeds.components.FeedInstagramImage;
-import com.nader.starfeeds.components.FeedInstagramVideo;
-import com.nader.starfeeds.components.FeedTwitterLink;
-import com.nader.starfeeds.components.FeedTwitterImage;
-import com.nader.starfeeds.components.FeedTwitterText;
+import com.nader.starfeeds.data.componenets.model.Feed;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookLink;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookImage;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookText;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookVideo;
+import com.nader.starfeeds.data.componenets.model.FeedInstagramImage;
+import com.nader.starfeeds.data.componenets.model.FeedInstagramVideo;
+import com.nader.starfeeds.data.componenets.model.FeedTwitterLink;
+import com.nader.starfeeds.data.componenets.model.FeedTwitterImage;
+import com.nader.starfeeds.data.componenets.model.FeedTwitterText;
 
 import org.json.JSONArray;
 import org.json.JSONException;

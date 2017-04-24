@@ -1,23 +1,13 @@
 package com.nader.starfeeds.data;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 
 import com.nader.starfeeds.Configuration.Configuration;
-import com.nader.starfeeds.components.Provider;
-import com.nader.starfeeds.components.User;
+import com.nader.starfeeds.data.componenets.model.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Arrays;
-
-import static com.nader.starfeeds.components.Provider.EMAIL_LOGIN;
+import static com.nader.starfeeds.data.componenets.Provider.EMAIL_LOGIN;
 
 /**
  * Provides user login via different ways(Facebook Login, Google Login, Email Login)

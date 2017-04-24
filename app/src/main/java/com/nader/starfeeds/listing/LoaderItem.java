@@ -1,7 +1,7 @@
 package com.nader.starfeeds.listing;
 
 
-import com.nader.starfeeds.components.Loader;
+import com.nader.starfeeds.data.componenets.Loader;
 
 /**
  * Created by Nader on 23-Aug-16.

@@ -1,88 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="16dp">
+    android:layout_marginTop="@dimen/card_view_margin_top">
 
-<RelativeLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    >
-
-    <ImageView
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:id="@+id/ivProfileImage"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginRight="5dp"
-        android:src="@drawable/ic_fb_blue"
-        android:paddingTop="1dp"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Yahoo"
-        android:id="@+id/tvProfileName"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginRight="5dp"
-        android:layout_alignTop="@+id/ivProfileImage"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:layout_toRightOf="@+id/ivProfileImage" />
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15m"
-        android:id="@+id/tvDate"
-        android:layout_above="@+id/tvFeed"
-        android:layout_alignParentEnd="true"
-        android:textColor="#657786"
-        android:layout_alignParentRight="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New MacBook Pro makes typing fun againmkljdsjdsjdsjdjsijdsijdisjdisjssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-        android:id="@+id/tvFeed"
-        android:layout_below="@+id/tvProfileName"
-        android:layout_alignStart="@+id/tvProfileName"
-        android:textSize="14sp"
-        android:textColor="#14171A"
-        android:layout_marginBottom="5dp"
-        android:autoLink="all"
-        android:layout_alignLeft="@+id/tvProfileName" />
-<android.support.v7.widget.CardView
-    android:layout_below="@+id/tvFeed"
-    android:layout_toEndOf="@+id/ivProfileImage"
-    android:layout_marginTop="15dp"
-    app:cardCornerRadius="8dp"
-    android:layout_width="700dp"
-    android:layout_height="200dp"
-    android:layout_toRightOf="@+id/ivProfileImage">
-    <ImageView
-        android:id="@+id/ivTwitterFeed"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tvFeed"
-        android:layout_toEndOf="@+id/ivProfileImage"
-        android:layout_marginBottom="5dp"
-        android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@+id/ivProfileImage" />
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:id="@+id/ivProfileImage"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_fb_blue"
+            android:paddingTop="1dp"
+            android:layout_alignParentLeft="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@+id/ivProfileImage">
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+
+             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yahoo"
+                android:id="@+id/tvProfileName"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15m"
+                android:id="@+id/tvDate"
+                android:layout_alignParentEnd="true"
+                android:textColor="#657786"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"/>
+
+         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New MacBook Pro makes typing fun againmkljdsjdsjdsjdjsijdsijdisjdisjssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+            android:id="@+id/tvFeed"
+            android:textSize="14sp"
+            android:textColor="#14171A"
+            android:layout_marginBottom="5dp"
+            android:autoLink="all" />
+
+        <android.support.v7.widget.CardView
+            android:layout_marginTop="4dp"
+            app:cardCornerRadius="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+            <ImageView
+                android:id="@+id/ivTwitterFeed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/tvFeed"
+                android:layout_toEndOf="@+id/ivProfileImage"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/ivProfileImage" />
+        </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 </android.support.v7.widget.CardView>
-
-
-
-</RelativeLayout>
-    </android.support.v7.widget.CardView>

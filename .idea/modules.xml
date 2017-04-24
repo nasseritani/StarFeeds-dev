@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/StarFeeds-dev.iml" filepath="$PROJECT_DIR$/StarFeeds-dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StarFeedsDev.iml" filepath="$PROJECT_DIR$/StarFeedsDev.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

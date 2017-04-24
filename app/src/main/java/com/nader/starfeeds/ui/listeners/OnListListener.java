@@ -13,4 +13,5 @@ public interface OnListListener {
      * Indicates the click of reloader button.
      */
     void onReloaderButtonSelected();
+
 }

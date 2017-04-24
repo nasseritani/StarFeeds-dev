@@ -5,5 +5,17 @@ package com.nader.starfeeds.listing;
  */
 
 public enum ListingItemType {
-    Loader, Reloader, FeedFacebookImage,FeedTwitterImage,FeedFaceBookText,FeedTwitterText,FeedTwitter,FeedFacebook,FeedFacebookVideo, FeedInstagramImage, FeedInstagramVideo
+    Loader,
+    Reloader,
+    ENDED,
+    CELEBRITY_PROFILE,
+    FeedFacebookImage,
+    FeedTwitterImage,
+    FeedFaceBookText,
+    FeedTwitterText,
+    FeedTwitterLink,
+    FeedFacebookLink,
+    FeedFacebookVideo,
+    FeedInstagramImage,
+    FeedInstagramVideo
 }

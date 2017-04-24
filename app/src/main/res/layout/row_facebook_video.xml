@@ -1,81 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#dfe3ee"
-    >
+    android:layout_marginTop="@dimen/card_view_margin_top">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/content_padding_vertical"
+        android:paddingBottom="@dimen/content_padding_vertical">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/content_margin_medium"
+            android:layout_marginStart="@dimen/content_margin_medium">
+
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="48dp"
+                android:id="@+id/ivProfilePic"
+                android:src="@drawable/new_logo" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_marginTop="20px"
-                    android:layout_marginLeft="13dp"
-                    android:layout_width="170px"
-                    android:layout_height="170px"
-                    android:scaleType="centerCrop"
-                    android:id="@+id/ivProfilePic"
-                    android:src="@drawable/nancyajramprofile" />
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:textStyle="bold"
-                        android:textColor="@color/cardview_dark_background"
-                        android:id="@+id/tvProfileName"
-                        android:layout_marginLeft="10dp"
-                        android:paddingTop="10dp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:id="@+id/tvDate"
-                        android:layout_marginLeft="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                        />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:textStyle="bold"
+                    android:textColor="@color/cardview_dark_background"
+                    android:id="@+id/tvProfileName"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp" />
 
-                </LinearLayout>
-
-
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/tvDate"
+                    android:layout_marginLeft="10dp" />
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="New TextNew TextNew TextNew Text"
-                android:id="@+id/tvFeed"
-                android:autoLink="all"
-                android:textColor="#14171A"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="10dp"/>
-
-            <VideoView
-                android:id="@+id/vvFacebookVideoFeed"
-                android:layout_width="1100px"
-                android:layout_height="850px"
-                android:layout_gravity="center"
-                />
-
-
         </LinearLayout>
-    </android.support.v7.widget.CardView>
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New TextNew TextNew TextNew Text"
+            android:id="@+id/tvFeed"
+            android:autoLink="all"
+            android:textColor="#14171A"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivFacebookVideoFeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="280dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:background="@color/light_grey"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_play_circle_outline_white_42dp"/>
+
+        </FrameLayout>
+
+        <WebView
+            android:id="@+id/wvVideo"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

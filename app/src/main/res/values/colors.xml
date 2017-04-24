@@ -4,4 +4,12 @@
     <color name="colorPrimaryDark">#2f487e</color>
     <color name="colorAccent">#8BC34A</color>
     <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="light_grey">#dfe3ee</color>
+    <color name="card_view_bg">#dfe3ee</color>
+    <color name="follow">#4c68d7</color>
+    <color name="video_player_activity_background">#E5000000</color>
+
+
 </resources>

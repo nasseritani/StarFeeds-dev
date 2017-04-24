@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
-import com.nader.starfeeds.components.User;
+import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
 
 /**

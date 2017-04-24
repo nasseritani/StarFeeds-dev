@@ -2,9 +2,7 @@ package com.nader.starfeeds.data;
 
 import android.util.Log;
 
-import com.nader.starfeeds.Configuration.Configuration;
-import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebookImage;
+import com.nader.starfeeds.data.componenets.model.Feed;
 import com.nader.starfeeds.utils.InternetConnection;
 
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class FeedsProvider {
      * Requests Feeds from the API.
      */
     private void requestFeeds() {
-        InternalJsonFileData internalJsonFileData = new InternalJsonFileData(Configuration.getContext(), new InternalJsonFileData.JSONParserListener() {
+        /*InternalJsonFileData internalJsonFileData = new InternalJsonFileData(Configuration.getContext(), new InternalJsonFileData.JSONParserListener() {
             @Override
             public void onResult(ArrayList<Feed> feeds) {
                 // update flag
@@ -69,7 +67,25 @@ public class FeedsProvider {
             }
 
         });
-        internalJsonFileData.loadJSONFromAsset();
+        internalJsonFileData.loadJSONFromAsset();*/
+
+        HttpRequestHandler httpRequestHandler = new HttpRequestHandler(new HttpRequestHandler.JSONParserListener() {
+            @Override
+            public void onResult(ArrayList<Feed> feeds) {
+                // update flag
+                isLoading = false;
+                // update state
+                broadcastState(isLoading);
+                if (feeds.size()>0){
+                    Log.i("nn","broadcast complete");
+                    broadcastComplete(feeds, feeds.size());
+                }
+                else {
+                    broadcastFailed(NetworkErrorType.API_FAIL);
+                }
+            }
+        });
+        httpRequestHandler.execute("http://192.168.43.209/StarFeeds/public/user-feeds/10");
     }
 
     public boolean isLoading() {

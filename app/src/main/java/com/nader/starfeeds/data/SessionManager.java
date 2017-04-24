@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.nader.starfeeds.Configuration.Configuration;
-import com.nader.starfeeds.components.User;
+import com.nader.starfeeds.data.componenets.model.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,8 +1,8 @@
 package com.nader.starfeeds.listing;
 
 
-import com.nader.starfeeds.components.Feed;
-import com.nader.starfeeds.components.FeedFacebookImage;
+import com.nader.starfeeds.data.componenets.model.Feed;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookImage;
 
 /**
  * Created by Nader on 15-Feb-17.

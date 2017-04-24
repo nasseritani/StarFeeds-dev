@@ -1,7 +1,7 @@
 package com.nader.starfeeds.listing;
 
 
-import com.nader.starfeeds.components.Reloader;
+import com.nader.starfeeds.data.componenets.Reloader;
 
 /**
  * Created by Nader on 28-Oct-16.
