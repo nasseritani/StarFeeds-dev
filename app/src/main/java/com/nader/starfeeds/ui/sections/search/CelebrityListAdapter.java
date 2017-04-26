@@ -1,7 +1,6 @@
 package com.nader.starfeeds.ui.sections.search;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -18,20 +17,13 @@ import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.componenets.model.Celebrity;
 import com.nader.starfeeds.data.componenets.Loader;
-import com.nader.starfeeds.data.componenets.model.Feed;
-import com.nader.starfeeds.ui.sections.celebrity.CelebrityActivity;
 import com.nader.starfeeds.ui.sections.search.listing.CelebrityListingItem;
 import com.nader.starfeeds.ui.sections.search.listing.ListingSearchType;
 import com.nader.starfeeds.ui.sections.search.listing.SearchListingItem;
 import com.nader.starfeeds.ui.sections.search.listing.SearchLoaderItem;
 import com.squareup.picasso.Picasso;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 
 public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -150,7 +142,7 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
     private class CelebrityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private LinearLayout llCelebrity;
+        private CardView cvCelebrity;
         private TextView tvProfileName;
         private ImageView ivProfile;
         private Button btnFollow;
@@ -160,9 +152,9 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
             // init views
             ivProfile= (ImageView) view.findViewById(R.id.ivProfileImage);
             tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
-            llCelebrity = (LinearLayout) view.findViewById(R.id.llCelebrity);
+            cvCelebrity = (CardView) view.findViewById(R.id.llCelebrity);
             btnFollow = (Button) view.findViewById(R.id.btnFollow);
-            llCelebrity.setOnClickListener(this);
+            cvCelebrity.setOnClickListener(this);
             btnFollow.setOnClickListener(this);
         }
 

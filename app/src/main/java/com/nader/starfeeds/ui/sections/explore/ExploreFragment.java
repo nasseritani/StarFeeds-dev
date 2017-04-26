@@ -51,7 +51,6 @@ public class ExploreFragment extends Fragment {
     private int mItemsCount;
     private RecyclerView mRecyclerView;
     boolean mLoadItemsSuccess = true;
-    SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
     CompositeSubscription compositeSubscription = new CompositeSubscription();
 
@@ -65,7 +64,6 @@ public class ExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.row_explore, container, false);
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeToRefresh);
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setHasFixedSize(true);
@@ -133,7 +131,6 @@ public class ExploreFragment extends Fragment {
         Log.i("nn", "complete");
         mExploreListAdapter.removeLastItem();
         mLoadItemsSuccess = true;
-        mSwipeRefreshLayout.setRefreshing(false);
         int currentCount = arrayFeeds.size();
         // convert new articles to items array
         ArrayList<ListingItem> newListingItems = convertFeedsToItems(arrayFeeds);

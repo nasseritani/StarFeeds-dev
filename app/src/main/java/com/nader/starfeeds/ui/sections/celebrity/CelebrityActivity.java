@@ -64,7 +64,6 @@ public class CelebrityActivity extends AppCompatActivity {
     private TextView tvCelebName;
     private ImageView ivCelebProfileImage;
     private RecyclerView mRecyclerView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
     private int mThreshold = 0;
     private int mItemsCount;
@@ -89,7 +88,6 @@ public class CelebrityActivity extends AppCompatActivity {
 
     private void initViews() {
         initToolbar();
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
         initRecyclerView();
     }
 
@@ -248,10 +246,8 @@ public class CelebrityActivity extends AppCompatActivity {
 
     //testing
     private void handleNewDataFeeds(ArrayList<Feed> arrayFeeds) {
-        Log.i("nn", "complete");
         mCelebritiesListAdapter.removeLastItem();
         mLoadItemsSuccess = true;
-        mSwipeRefreshLayout.setRefreshing(false);
         int currentCount = arrayFeeds.size();
         // convert new articles to items array
         ArrayList<ListingItem> newListingItems = convertFeedsToItems(arrayFeeds);

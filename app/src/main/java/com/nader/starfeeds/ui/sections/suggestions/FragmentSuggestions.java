@@ -36,7 +36,6 @@ public class FragmentSuggestions extends Fragment {
     private CelebrityListAdapter celebrityListAdapter;
     private RecyclerView mRecyclerView;
     boolean mLoadItemsSuccess = true;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
     private int currentPage;
@@ -51,15 +50,6 @@ public class FragmentSuggestions extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_suggestions, container, false);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeToRefresh);
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                //if (!isLoading)
-                    //requestNewUserFeeds("10", latestPostId);
-            }
-        });
-
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
