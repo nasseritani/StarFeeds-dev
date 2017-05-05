@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.widget.Toast;
 
 import com.nader.starfeeds.R;
+import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.SearchCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
@@ -46,10 +47,12 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
     private CelebrityListAdapter celebrityListAdapter;
     CompositeSubscription compositeSubscription = new CompositeSubscription();
     ProgressDialog pd ;
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_expanded);
+        userId = SessionManager.getInstance().getSessionUser().getId();
         initToolbar();
         initRecyclerView();
     }
@@ -60,7 +63,6 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
 
     private void initRecyclerView() {
@@ -78,12 +80,12 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
 
             @Override
             public void onFollowClick(Celebrity celebrity) {
-                sendFollowRequest("10",celebrity);
+                sendFollowRequest(userId, celebrity);
             }
 
             @Override
             public void onUnFollowClick(Celebrity celebrity) {
-                sendUnFollowRequest("10", celebrity);
+                sendUnFollowRequest(userId, celebrity);
             }
         }, getBaseContext());
         recyclerView.setAdapter(celebrityListAdapter);
@@ -196,7 +198,7 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                requestCelebritySearch(query,"10");
+                requestCelebritySearch(query, userId);
                 return false;
             }
 

@@ -1,7 +1,9 @@
 package com.nader.starfeeds.authentication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -12,22 +14,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
+import com.nader.starfeeds.data.api.requests.LoginEmailRequest;
+import com.nader.starfeeds.data.api.responses.ApiResponse;
+import com.nader.starfeeds.data.api.responses.LoginEmailResponse;
 import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
+
+import rx.SingleSubscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 public class LoginFragment extends Fragment implements
         View.OnClickListener,
         LoginProvider.OnLoginProviderListener
 {
-    static EditText etEmail;
-    static EditText etPassword;
-    static Button btnSubmit;
-    static Button btnRegister;
-    static TextInputLayout inputLayoutEmail;
-    static TextInputLayout inputLayoutPassword;
+    private EditText etEmail;
+    private EditText etPassword;
+    private Button btnSubmit;
+    private Button btnRegister;
+    private TextInputLayout inputLayoutEmail;
+    private TextInputLayout inputLayoutPassword;
     private LoginFragment.OnLoginFragmentInteractionListener mListener;
 
     @Nullable
@@ -134,7 +146,6 @@ public class LoginFragment extends Fragment implements
     /** Handles submit button press.
      */
     private void submitButtonPressed() {
-
         // validate inputs
         if (validateEmail() && validatePassword()) {
             // inputs are valid
@@ -142,13 +153,9 @@ public class LoginFragment extends Fragment implements
             mListener.onShowProgress();
             LoginProvider loginProvider = new LoginProvider(getContext(), this);
             loginProvider.loginViaEmail(getEmailInput(),getPasswordInput());
-            // inform parent of execution end
-            User user = new User(getEmailInput(),getPasswordInput());
-            mListener.onLoggedIn(user);
         }
         // no need for else statement, validation will show errors
     }
-
 
     /**
      * Validates the email inserted in the email TextField,
@@ -220,12 +227,13 @@ public class LoginFragment extends Fragment implements
 
     @Override
     public void onLoginSuccess(User user) {
+        mListener.onLoggedIn(user);
         mListener.onDismissProgress();
     }
 
     @Override
     public void onLoginFailed(String error) {
-
+        mListener.onDismissProgress();
     }
 
     @Override

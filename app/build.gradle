@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId "com.nader.starfeeds"
         minSdkVersion 16
@@ -25,8 +25,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-
-
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:support-v4:24.2.1'
     compile 'com.android.support:design:24.2.1'
@@ -38,6 +36,7 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'im.ene.toro2:toro:2.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+    compile 'com.facebook.android:facebook-android-sdk:4.7.0'
+    compile 'com.google.android.gms:play-services:9.4.0'
     testCompile 'junit:junit:4.12'
 }

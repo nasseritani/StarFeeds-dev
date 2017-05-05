@@ -1,6 +1,7 @@
 package com.nader.starfeeds.authentication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -89,8 +90,18 @@ public class LoginOptionsFragment extends Fragment implements
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i(Configuration.TAG,"Login options");
+        if (loginProvider != null) loginProvider.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void onClick(View view) {
         switch(view.getId()){
+            case R.id.btnFbLogin:
+                handleFbLoginButtonPressed();
+                break;
             case R.id.btnEmailLogin:
                 handleLoginButtonPressed();
                 break;
@@ -98,6 +109,14 @@ public class LoginOptionsFragment extends Fragment implements
                 handleRegisterButtonPressed();
                 break;
         }
+    }
+
+    /**
+     * Handles fb login button click.
+     */
+    public void handleFbLoginButtonPressed() {
+        mListener.onShowProgress();
+        loginProvider.loginViaFB(getActivity());
     }
 
     @Override
@@ -108,7 +127,7 @@ public class LoginOptionsFragment extends Fragment implements
 
     @Override
     public void onLoginFailed(String error) {
-
+        mListener.onDismissProgress();
     }
 
     @Override

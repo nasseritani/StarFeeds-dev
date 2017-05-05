@@ -101,7 +101,7 @@ public class ExploreDetailActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         //create new adapter
-        mFeedsListAdapter = new FeedsListAdapter(null, listListener, getBaseContext());
+        mFeedsListAdapter = new FeedsListAdapter(null, listListener, getBaseContext(), false);
         mRecyclerView.setAdapter(mFeedsListAdapter);
 
     }
@@ -240,6 +240,16 @@ public class ExploreDetailActivity extends AppCompatActivity {
         @Override
         public void onReloaderButtonSelected() {
             reloadClicked();
+        }
+
+        @Override
+        public void onFollowClick(String celebrity) {
+
+        }
+
+        @Override
+        public void onUnFollowClick(String celebrity) {
+
         }
     };
 

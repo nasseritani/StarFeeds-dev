@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.nader.starfeeds.R;
 
+import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.data.api.requests.ExploreFeedsRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
 import com.nader.starfeeds.data.api.responses.UserFeedsResponse;
@@ -52,6 +53,7 @@ public class ExploreFragment extends Fragment {
     private RecyclerView mRecyclerView;
     boolean mLoadItemsSuccess = true;
     private boolean isLoading = false;
+    private String userId;
     CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     @Override
@@ -63,6 +65,7 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.row_explore, container, false);
+        userId = SessionManager.getInstance().getSessionUser().getId();
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
@@ -84,7 +87,7 @@ public class ExploreFragment extends Fragment {
                 }
             }
         });
-        requestExploreFeeds("10");
+        requestExploreFeeds(userId);
         return v;
     }
 
@@ -229,11 +232,21 @@ public class ExploreFragment extends Fragment {
         public void onReloaderButtonSelected() {
             reloadClicked();
         }
+
+        @Override
+        public void onFollowClick(String celebrity) {
+
+        }
+
+        @Override
+        public void onUnFollowClick(String celebrity) {
+
+        }
     };
 
     private void reloadClicked() {
         mExploreListAdapter.removeLastItem();
-        requestExploreFeeds("10");
+        requestExploreFeeds(userId);
     }
 
 }

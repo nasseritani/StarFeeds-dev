@@ -1,37 +1,72 @@
 package com.nader.starfeeds.data;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.data.api.requests.LoginEmailRequest;
+import com.nader.starfeeds.data.api.requests.LoginFacebookRequest;
+import com.nader.starfeeds.data.api.requests.RegisterUserRequest;
+import com.nader.starfeeds.data.api.responses.ApiResponse;
+import com.nader.starfeeds.data.api.responses.LoginEmailResponse;
+import com.nader.starfeeds.data.componenets.Provider;
 import com.nader.starfeeds.data.componenets.model.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+
+import rx.SingleSubscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static com.nader.starfeeds.data.componenets.Provider.EMAIL_LOGIN;
 
 /**
  * Provides user login via different ways(Facebook Login, Google Login, Email Login)
  */
-public class LoginProvider {
+public class LoginProvider implements FacebookCallback<LoginResult>,
+        GoogleApiClient.OnConnectionFailedListener  {
     private Context context;
     private OnLoginProviderListener loginListener;
+    // fb
+    private CallbackManager callbackManager;
+    // google
+    private static final int RC_GOOGLE_LOGIN = 9001;
+    private static GoogleApiClient mGoogleApiClient;
+    private GoogleSignInResult result;
 
     public LoginProvider(Context context, OnLoginProviderListener loginRequested) {
         this.loginListener = loginRequested;
         this.context = context;
+        FacebookSdk.sdkInitialize(context);
     }
-
-
+    
     /**
      * Method to login user via email, sends request to SessionManager to store session.
      * @param emailInput is the email of the user.
      * @param passwordInput is the password of the user.
      */
     public void loginViaEmail(String emailInput, String passwordInput) {
-        User user = new User(emailInput, passwordInput);
-        user.setId((int) Math.random()*100 + "");
-        user.setProvider(EMAIL_LOGIN);
-        SessionManager.getInstance().storeSession(user);
+       sendEmailLoginRequest(emailInput, passwordInput);
     }
 
     /**
@@ -57,10 +92,89 @@ public class LoginProvider {
      * Handles the registration of a user.
      */
     public void registerUser(String name, String email, String password) {
-        User user = new User(name, email, password);
-        user.setId((int) Math.random()*100 + "");
-        user.setProvider(EMAIL_LOGIN);
-        SessionManager.getInstance().storeSession(user);
+        sendRegisterRequest(name, email, password);
+    }
+
+    // FACEBOOK //
+
+    /**
+     * Requests to login the user using the Facebook SDK.
+     * The result will be handled in the callbackManager.
+     */
+    public void loginViaFB(Activity activity){
+        // checks if an accessToken already exists
+        if(AccessToken.getCurrentAccessToken() != null ){
+            Log.i("logged","Logged in");
+        }
+        callbackManager = CallbackManager.Factory.create();
+        //requests fblogin with public profile and user friends permissions
+        LoginManager.getInstance().registerCallback(callbackManager,this);
+        LoginManager.getInstance().logInWithReadPermissions(activity, Arrays.asList("public_profile","user_friends"));
+
+    }
+
+    @Override
+    public void onSuccess(LoginResult loginResult) {
+        // request fb login
+        loginFacebookUser(loginResult.getAccessToken());
+
+        //Handles the result of login and changes the JSON Object to User Object with equivalent values.
+        GraphRequest.newMeRequest(
+                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(JSONObject json, GraphResponse response) {
+                        if (response.getError() != null) {
+                            // handle error
+                            Log.i(Configuration.TAG,"Fb Login Error ERROR");
+                        } else {
+                            Log.i(Configuration.TAG,json.toString());
+                            User user;
+                            try {
+                                String name = null;
+                                String email = null;
+                                String id = json.getString("id");
+                                if (!json.isNull("name") ) name = json.getString("name");
+                                if (!json.isNull("email") ) email = json.getString("email");
+                                sendFacebookLoginRequest(id, email, name);
+                            } catch (JSONException e) {
+                                Log.i(Configuration.TAG, " n: " + e.toString());
+                                user = new User("", "", "");
+                            }
+                        }
+                    }
+
+                }).executeAsync();
+    }
+
+    /**
+     * Handles activity results in case of social login.
+     */
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i(Configuration.TAG,"login provider "+requestCode+"    "+resultCode);
+        if (requestCode == RC_GOOGLE_LOGIN) {
+           // handleGoogleLoginResult(data);
+        }
+        else {
+            Log.i(Configuration.TAG,"result");
+            if(callbackManager != null)  callbackManager.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onCancel() {
+        if (loginListener != null) {
+            loginListener.onLoginCanceled();
+        }
+    }
+
+    @Override
+    public void onError(FacebookException error) {
+        loginListener.onLoginFailed(error.toString());
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 
 
@@ -92,5 +206,87 @@ public class LoginProvider {
         void onLogOutSuccess();
     }
 
+
+    private void loginFacebookUser(AccessToken accessToken) {
+    }
+
     // API //
+
+    private void sendEmailLoginRequest(@NonNull String email, @NonNull final String password) {
+        LoginEmailRequest apiRequest = new LoginEmailRequest();
+        // create rx subscription
+        Subscription loginSubscription = apiRequest.login(email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ApiResponse>() {
+                    @Override
+                    public void onSuccess(ApiResponse apiResponse) {
+                        LoginEmailResponse response = (LoginEmailResponse) apiResponse;
+                        User user = response.getUser();
+                        handleLoginResponse(user, EMAIL_LOGIN);
+                    }
+                    @Override
+                    public void onError(Throwable error) {
+                        handleLoginError();
+                    }
+                });
+    }
+
+    private void sendRegisterRequest(@NonNull String name, @NonNull String email, @NonNull final String password) {
+        RegisterUserRequest apiRequest = new RegisterUserRequest();
+        // create rx subscription
+        Subscription loginSubscription = apiRequest.register(name, email, password)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ApiResponse>() {
+                    @Override
+                    public void onSuccess(ApiResponse apiResponse) {
+                        LoginEmailResponse response = (LoginEmailResponse) apiResponse;
+                        User user = response.getUser();
+                        handleLoginResponse(user, EMAIL_LOGIN);
+                    }
+                    @Override
+                    public void onError(Throwable error) {
+                        handleLoginError();
+                    }
+                });
+    }
+
+
+    private void sendFacebookLoginRequest(@NonNull String id,String email, final String name) {
+        LoginFacebookRequest apiRequest = new LoginFacebookRequest();
+        // create rx subscription
+        Subscription loginSubscription = apiRequest.login(id, email, name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ApiResponse>() {
+                    @Override
+                    public void onSuccess(ApiResponse apiResponse) {
+                        LoginEmailResponse response = (LoginEmailResponse) apiResponse;
+                        User user = response.getUser();
+                        handleLoginResponse(user,Provider.Fb_LOGIN);
+                    }
+                    @Override
+                    public void onError(Throwable error) {
+                        handleLoginError();
+                    }
+                });
+    }
+
+
+    private void handleLoginError() {
+        loginListener.onLoginFailed("Something Went Wrong, Try Again Later");
+    }
+
+    private void handleLoginResponse(User user, Provider type) {
+        if (user != null) {
+            user.setProvider(type);
+            SessionManager.getInstance().storeSession(user);
+            loginListener.onLoginSuccess(user);
+        }
+        else{
+            loginListener.onLoginFailed("Login Failed");
+        }
+    }
+
 }

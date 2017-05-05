@@ -45,7 +45,7 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
         mtoolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mtoolbar);
         setTitle("StarFeeds");
-        mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        mtoolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
     }
 //initializing TabLayout and setting it up with the viewpager
     private void initTabLayout(){

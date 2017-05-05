@@ -213,7 +213,8 @@ public class RegisterFragment extends Fragment implements LoginProvider.OnLoginP
 
     @Override
     public void onLoginSuccess(User user) {
-
+        mListener.onRegisterSuccessful(user);
+        mListener.onDismissProgress();
     }
 
     @Override
@@ -237,6 +238,11 @@ public class RegisterFragment extends Fragment implements LoginProvider.OnLoginP
          * Indicates register submit button selected.
          */
         void onRegisterSubmitSelected(User user);
+
+        /**
+         * Indicates register was successful.
+         */
+        void onRegisterSuccessful(User user);
         /**
          * Indicates progress taking place.
          */

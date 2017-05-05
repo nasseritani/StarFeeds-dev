@@ -1,15 +1,23 @@
 package com.nader.starfeeds;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.authentication.AuthenticationActivity;
 import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.ui.sections.home.MainViewActivity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Activity class which is started first, and controls the base flow

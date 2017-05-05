@@ -40,7 +40,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
     private void initPlLoader() {
         pdLoader = new ProgressDialog(this);
         pdLoader.setMessage("Loading...");
-        pdLoader.setCancelable(false);
+        pdLoader.setCancelable(true);
         pdLoader.setIndeterminate(true);
     }
 
@@ -56,7 +56,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
     void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("StarFeeds");
-        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar);
     }
 
@@ -98,6 +98,11 @@ public class AuthenticationActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterSubmitSelected(User user) {
+
+    }
+
+    @Override
+    public void onRegisterSuccessful(User user) {
         Log.i(Configuration.TAG, user.toString());
         Intent intent = new Intent();
         setResult(Configuration.AUTHENTICATION_REQUEST, intent);
@@ -106,28 +111,21 @@ public class AuthenticationActivity extends AppCompatActivity implements
 
     @Override
     public void onShowProgress() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (pdLoader != null && !pdLoader.isShowing()) {
-                    Log.i(Configuration.TAG, "show");
-                    pdLoader.show(AuthenticationActivity.this, "", "Loading...", true);
-                }
-            }
-        });
+       // pdLoader.show(AuthenticationActivity.this, "", "Loading...", true);
     }
 
     @Override
     public void onDismissProgress() {
+        pdLoader.dismiss();/*
         handler.post(new Runnable() {
             @Override
             public void run() {
-                if (pdLoader != null && pdLoader.isShowing()) {
+                if (pdLoader != null) {
                     Log.i(Configuration.TAG, "dismiss");
                     pdLoader.dismiss();
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -154,6 +152,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
     @Override
     public void onLoginFailed(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        pdLoader.dismiss();
     }
 
     @Override

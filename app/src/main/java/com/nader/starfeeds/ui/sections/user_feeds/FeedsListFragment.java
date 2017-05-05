@@ -1,5 +1,6 @@
 package com.nader.starfeeds.ui.sections.user_feeds;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -10,14 +11,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nader.starfeeds.R;
 
+import com.nader.starfeeds.data.SessionManager;
+import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
+import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.UserFeedsRequest;
 import com.nader.starfeeds.data.api.requests.UserNewFeedsRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
+import com.nader.starfeeds.data.api.responses.PostRequestResponse;
 import com.nader.starfeeds.data.api.responses.UserFeedsResponse;
 import com.nader.starfeeds.data.componenets.DataEnded;
+import com.nader.starfeeds.data.componenets.model.Celebrity;
 import com.nader.starfeeds.data.componenets.model.Feed;
 import com.nader.starfeeds.data.componenets.model.FeedFacebookLink;
 import com.nader.starfeeds.data.componenets.model.FeedFacebookImage;
@@ -75,6 +82,7 @@ public class FeedsListFragment extends Fragment {
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
     private int currentPage;
     private String latestPostId;
+    private String userId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,12 +96,13 @@ public class FeedsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_feeds_list, container, false);
+        userId = SessionManager.getInstance().getSessionUser().getId();
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeToRefresh);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if (!isLoading)
-                    requestNewUserFeeds("10", latestPostId);
+                    requestNewUserFeeds(userId, latestPostId);
                 else{
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
@@ -104,7 +113,7 @@ public class FeedsListFragment extends Fragment {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        mFeedsListAdapter = new FeedsListAdapter(null, listListener, getActivity());//create new adapter
+        mFeedsListAdapter = new FeedsListAdapter(null, listListener, getActivity(), false);//create new adapter
         mRecyclerView.setAdapter(mFeedsListAdapter);
         // track scrolling
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -116,13 +125,13 @@ public class FeedsListFragment extends Fragment {
                     int lastVisiblePosition = linearLayoutManager.findLastVisibleItemPosition();
                     //checks if current position of bindView equals mThreshold
                     if (lastVisiblePosition >= mThreshold && mLoadItemsSuccess) {
-                        requestUserFeeds("10", currentPage);
+                        requestUserFeeds(userId, currentPage);
                     }
                 }
             }
         });
         currentPage = 1;
-        requestUserFeeds("10", currentPage);
+        requestUserFeeds(userId, currentPage);
         return v;
     }
 
@@ -347,11 +356,21 @@ public class FeedsListFragment extends Fragment {
         public void onReloaderButtonSelected() {
             reloadClicked();
         }
+
+        @Override
+        public void onFollowClick(String celebId) {
+
+        }
+
+        @Override
+        public void onUnFollowClick(String celebId) {
+
+        }
     };
 
     private void reloadClicked() {
         mFeedsListAdapter.removeLastItem();
-        requestUserFeeds("10", currentPage);
+        requestUserFeeds(userId, currentPage);
     }
 
 }

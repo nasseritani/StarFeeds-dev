@@ -1,6 +1,8 @@
 package com.nader.starfeeds.ui.sections.celebrity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -11,13 +13,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.NetworkErrorType;
+import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.data.api.requests.CelebrityFeedsRequest;
 import com.nader.starfeeds.data.api.requests.CelebrityRequest;
+import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
+import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
 import com.nader.starfeeds.data.api.responses.CelebrityResponse;
+import com.nader.starfeeds.data.api.responses.PostRequestResponse;
 import com.nader.starfeeds.data.api.responses.UserFeedsResponse;
 import com.nader.starfeeds.data.componenets.model.Celebrity;
 import com.nader.starfeeds.data.componenets.model.Feed;
@@ -68,22 +75,24 @@ public class CelebrityActivity extends AppCompatActivity {
     private int mThreshold = 0;
     private int mItemsCount;
     private FeedsListAdapter mCelebritiesListAdapter;
-    private String userId = "10";
+    private String userId;
     private String celebId;
     private String celebName;
     boolean mLoadItemsSuccess = true;
     boolean isLoading = false;
+    private ProgressDialog pd;
+    private Celebrity celebrity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_celebrity);
+        userId = SessionManager.getInstance().getSessionUser().getId();
         initViews();
         Intent intent = getIntent();
         celebId = intent.getStringExtra(CELEB_ID);
         celebName = intent.getStringExtra(CELEB_NAME);
         requestCelebrity();
-        requestCelebrityFeeds();
     }
 
     private void initViews() {
@@ -97,7 +106,7 @@ public class CelebrityActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);
         //create new adapter
-        mCelebritiesListAdapter = new FeedsListAdapter(null, listListener, getBaseContext());
+        mCelebritiesListAdapter = new FeedsListAdapter(null, listListener, getBaseContext(), true);
         mRecyclerView.setAdapter(mCelebritiesListAdapter);
 
         // track scrolling
@@ -219,10 +228,10 @@ public class CelebrityActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(ApiResponse apiResponse) {
                         CelebrityResponse celebrityResponse = (CelebrityResponse) apiResponse;
-                        Celebrity celebrity = celebrityResponse.getCelebrity();
+                        celebrity = celebrityResponse.getCelebrity();
                         handleCelebrity(celebrity);
+                        requestCelebrityFeeds();
                     }
-
                     @Override
                     public void onError(Throwable error) {
                         handleNewDataFeedsError();
@@ -290,7 +299,98 @@ public class CelebrityActivity extends AppCompatActivity {
         public void onReloaderButtonSelected() {
             reloadClicked();
         }
+
+        @Override
+        public void onFollowClick(String celebrity) {
+            sendFollowRequest(userId, celebrity);
+        }
+
+        @Override
+        public void onUnFollowClick(String celebrity) {
+            sendUnFollowRequest(userId, celebrity);
+        }
     };
+
+    private void sendFollowRequest(@NonNull String userId, @NonNull final String celebId) {
+        pd = new ProgressDialog(this);
+        pd.setMessage("loading");
+        pd.show();
+        FollowCelebrityRequest apiRequest = new FollowCelebrityRequest();
+        // create rx subscription
+        Subscription followCelebritySubscription = apiRequest.followCeleb(userId, celebId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ApiResponse>() {
+                    @Override
+                    public void onSuccess(ApiResponse apiResponse) {
+                        PostRequestResponse response = (PostRequestResponse) apiResponse;
+                        boolean isRequestSuccessful = response.isRequestSuccesful();
+                        handleFollowResponse(isRequestSuccessful);
+                    }
+                    @Override
+                    public void onError(Throwable error) {
+                        handleFollowError();
+                    }
+                });
+        // add subscription to compositeSubscription
+        compositeSubscription.add(followCelebritySubscription);
+    }
+
+    private void handleFollowError() {
+        if (pd != null) {
+            pd.dismiss();
+        }
+        Toast.makeText(this,"Something Went Wrong, Try Again Later", Toast.LENGTH_SHORT).show();
+    }
+
+    private void handleFollowResponse(boolean items) {
+        if (pd != null) {
+            pd.dismiss();
+        }
+        celebrity.setFollowed(items);
+        mCelebritiesListAdapter.notifyDataSetChanged();
+    }
+
+    private void sendUnFollowRequest(@NonNull String userId,@NonNull final String celebId) {
+        pd = new ProgressDialog(this);
+        pd.setMessage("loading");
+        pd.show();
+        UnFollowCelebrityRequest apiRequest = new UnFollowCelebrityRequest();
+        // create rx subscription
+        Subscription unFollowCelebritySubscription = apiRequest.unFollowCeleb(userId, celebId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleSubscriber<ApiResponse>() {
+                    @Override
+                    public void onSuccess(ApiResponse apiResponse) {
+                        PostRequestResponse response = (PostRequestResponse) apiResponse;
+                        boolean isRequestSuccessful = response.isRequestSuccesful();
+                        handleUnFollowResponse(isRequestSuccessful);
+                    }
+                    @Override
+                    public void onError(Throwable error) {
+                        handleUnFollowError();
+                    }
+                });
+        // add subscription to compositeSubscription
+        compositeSubscription.add(unFollowCelebritySubscription);
+    }
+
+    private void handleUnFollowError() {
+        if (pd != null) {
+            pd.dismiss();
+        }
+        Toast.makeText(getBaseContext(),"Something Went Wrong, Try Again Later", Toast.LENGTH_SHORT).show();
+    }
+
+    private void handleUnFollowResponse(boolean items) {
+        if (pd != null) {
+            pd.dismiss();
+        }
+        // !true (successful)
+        celebrity.setFollowed(!items);
+        mCelebritiesListAdapter.notifyDataSetChanged();
+    }
 
     private void reloadClicked() {
         mCelebritiesListAdapter.removeLastItem();

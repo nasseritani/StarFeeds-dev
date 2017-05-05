@@ -75,6 +75,10 @@ public class UserFeedsRequest extends ApiRequest {
                             feed = new FeedFacebookText(jsonObject);
                             feeds.add(feed);
                             break;
+                        case "facebook_mobile_status_update":
+                            feed = new FeedFacebookText(jsonObject);
+                            feeds.add(feed);
+                            break;
                         case "instagram_image":
                             feed = new FeedInstagramImage(jsonObject);
                             feeds.add(feed);

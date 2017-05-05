@@ -35,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Settings");
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 

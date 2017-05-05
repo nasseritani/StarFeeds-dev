@@ -68,14 +68,16 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private ArrayList<ListingItem> items = new ArrayList<>();
     private Context ctx;
     private OnListListener listener = null;
-    MediaController mMediaController;
+    private MediaController mMediaController;
+    private boolean isCelebrity;
 
-    public FeedsListAdapter(ArrayList<ListingItem> items, OnListListener listener, Context ctx) {
+    public FeedsListAdapter(ArrayList<ListingItem> items, OnListListener listener, Context ctx, boolean isCelebrity) {
         if (items != null) {
             this.items = items;
         }
         this.ctx = ctx;
         this.listener = listener;
+        this.isCelebrity = isCelebrity;
     }
 
     @Override
@@ -689,10 +691,20 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
             ivProfile= (ImageView) view.findViewById(R.id.ivProfilePhoto);
             btnFollow = (Button) view.findViewById(R.id.btnFollow);
+            btnFollow.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            String celebId = ((CelebrityProfileItem)items.get(getAdapterPosition())).getCelebrityProfile().getId();
+            switch (v.getId()){
+                case R.id.btnFollow:
+                    if (listener != null) {
+                        if (btnFollow.getText().equals("Follow")) listener.onFollowClick(celebId);
+                        else listener.onUnFollowClick(celebId);
+                    }
+                    break;
+            }
         }
     }
 
@@ -733,9 +745,11 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private void startCelebrityActivity(String id){
-        Intent i=new Intent(ctx, CelebrityActivity.class);
-        i.putExtra(CelebrityActivity.CELEB_ID, id);
-        ctx.startActivity(i);
+        if (!isCelebrity) {
+            Intent i = new Intent(ctx, CelebrityActivity.class);
+            i.putExtra(CelebrityActivity.CELEB_ID, id);
+            ctx.startActivity(i);
+        }
     }
 
     void startVideoPlayer(String extra) {
