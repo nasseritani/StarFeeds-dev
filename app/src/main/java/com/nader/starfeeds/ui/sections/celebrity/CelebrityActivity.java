@@ -309,6 +309,11 @@ public class CelebrityActivity extends AppCompatActivity {
         public void onUnFollowClick(String celebrity) {
             sendUnFollowRequest(userId, celebrity);
         }
+
+        @Override
+        public void onImageClicked(String imageUrl) {
+
+        }
     };
 
     private void sendFollowRequest(@NonNull String userId, @NonNull final String celebId) {

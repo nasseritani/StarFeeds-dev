@@ -13,44 +13,57 @@
         android:paddingTop="@dimen/content_padding_vertical"
         android:paddingBottom="@dimen/content_padding_vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/content_margin_medium"
-            android:layout_marginStart="@dimen/content_margin_medium">
-
-            <ImageView
-                android:layout_width="42dp"
-                android:layout_height="48dp"
-                android:id="@+id/ivProfilePic"
-                android:src="@drawable/new_logo"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/content_margin_medium"
+                android:layout_marginStart="@dimen/content_margin_medium">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:textStyle="bold"
-                    android:textColor="@color/cardview_dark_background"
-                    android:id="@+id/tvProfileName"
-                    android:layout_marginLeft="10dp"
-                    android:paddingTop="10dp"
-                     />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/tvDate"
-                    android:layout_marginLeft="10dp" />
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/ivProfilePic"
+                    android:src="@drawable/new_logo"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:textStyle="bold"
+                        android:textColor="@color/cardview_dark_background"
+                        android:id="@+id/tvProfileName"
+                        android:layout_marginLeft="10dp"
+                        android:paddingTop="10dp"
+                         />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/tvDate"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/drawable_fb_icon"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -63,14 +76,14 @@
             android:paddingLeft="10dp"/>
 
         <ImageView
+            android:id="@+id/ivFacebookImageFeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ivFacebookImageFeed"
-            android:scaleType="centerCrop"
-            android:adjustViewBounds="true"
-            android:src="@drawable/new_logo"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/new_logo" />
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

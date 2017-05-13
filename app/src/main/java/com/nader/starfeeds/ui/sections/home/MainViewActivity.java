@@ -19,6 +19,7 @@ import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.settings.SettingsActivity;
 import com.nader.starfeeds.ui.sections.explore.ExploreFragment;
+import com.nader.starfeeds.ui.sections.profile.ProfileFragment;
 import com.nader.starfeeds.ui.sections.suggestions.FragmentSuggestions;
 import com.nader.starfeeds.ui.sections.user_feeds.FeedsListFragment;
 import com.nader.starfeeds.ui.sections.search.SearchCelebritiesActivity;
@@ -56,14 +57,16 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_explore_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_group_add_white_24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_person_black_24dp);
     }
 //Setting up viewpager with its adapter
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
         adapter.addFragment(new FeedsListFragment(),"");
         adapter.addFragment(new ExploreFragment(), "");
         adapter.addFragment(new FragmentSuggestions(),"");
+        adapter.addFragment(new ProfileFragment(),"");
         viewPager.setAdapter(adapter);
     }
 

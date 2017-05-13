@@ -7,7 +7,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -44,23 +54,10 @@
                 android:hint="@string/hint_email" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/inputLayoutPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/inputPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/hint_password" />
-        </android.support.design.widget.TextInputLayout>
-
         <Button android:id="@+id/btnRegisterSubmit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_register"
+            android:text="@string/edit_profile"
             android:background="@color/colorAccent"
             android:layout_marginTop="40dp"
             android:textColor="@android:color/white"/>

@@ -18,12 +18,12 @@ import rx.Single;
  * Created by Nader on 20-Apr-17.
  */
 
-public class UserCelebritiesFollowingRequest extends ApiRequest {
+public class CelebritiesFollowedRequest extends ApiRequest {
 
     public Single<ApiResponse> fetchCelebFollowing(@NonNull String id) {
         // base url
         String url;
-        url = ApiConfig.getApiHost() + "/search-celebs-name/" + id;
+        url = ApiConfig.getApiHost() + "/user-following/" + id;
         // create request
         return sendGetRequest(url);
     }
@@ -33,7 +33,8 @@ public class UserCelebritiesFollowingRequest extends ApiRequest {
         ArrayList<Celebrity> celebrities = new ArrayList<>();
         try {
             if (result != null) {
-                JSONArray data = new JSONArray(result);
+                JSONObject jsonResult = new JSONObject(result);
+                JSONArray data = jsonResult.getJSONArray("data");
                 for (int i = 0; i < data.length(); i++) {
                     JSONObject jsonObject = data.getJSONObject(i);
                     Celebrity celebrity = new Celebrity(jsonObject);

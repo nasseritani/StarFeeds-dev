@@ -1,20 +1,21 @@
-package com.nader.starfeeds.ui.sections.suggestions;
+package com.nader.starfeeds.ui.sections.profile;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.SessionManager;
+import com.nader.starfeeds.data.api.requests.CelebritiesFollowedRequest;
 import com.nader.starfeeds.data.api.requests.CelebritiesSuggestionsRequest;
 import com.nader.starfeeds.data.api.requests.DislikeCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
@@ -39,9 +40,11 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
-public class FragmentSuggestions extends Fragment {
+public class ProfileFragment extends Fragment {
+
     private CelebrityListAdapter celebrityListAdapter;
     private RecyclerView mRecyclerView;
+    private Button btnEditProfile;
     boolean mLoadItemsSuccess = true;
     private boolean isLoading = false;
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
@@ -58,13 +61,20 @@ public class FragmentSuggestions extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_suggestions, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile, container, false);
         userId = SessionManager.getInstance().getSessionUser().getId();
+        btnEditProfile = (Button) v.findViewById(R.id.btnEditProfile);
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startEditProfileActivity();
+            }
+        });
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setHasFixedSize(true);
-        celebrityListAdapter = new CelebrityListAdapter(null, getActivity(), true, new CelebrityListAdapter.OnItemClickListener() {
+        celebrityListAdapter = new CelebrityListAdapter(null,getActivity(), false, new CelebrityListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Celebrity celebrity) {
                 if (celebrity != null) {
@@ -74,7 +84,7 @@ public class FragmentSuggestions extends Fragment {
 
             @Override
             public void onFollowClick(Celebrity celebrity) {
-                sendFollowRequest(userId, celebrity);
+
             }
 
             @Override
@@ -84,7 +94,7 @@ public class FragmentSuggestions extends Fragment {
 
             @Override
             public void onDislikeClick(Celebrity celebrity) {
-                sendDislikeRequest(userId, celebrity);
+
             }
         });//create new adapter
         mRecyclerView.setAdapter(celebrityListAdapter);
@@ -104,50 +114,15 @@ public class FragmentSuggestions extends Fragment {
             }
         });
         currentPage = 1;
-        requestCelebritySuggestions(userId);
+        requestCelebritiesFollowed(userId);
         return v;
     }
 
-    private void sendFollowRequest(@NonNull String userId,@NonNull final Celebrity celebrity) {
-        pd = new ProgressDialog(getContext());
-        pd.setMessage("loading");
-        pd.show();
-        FollowCelebrityRequest apiRequest = new FollowCelebrityRequest();
-        // create rx subscription
-        Subscription followCelebritySubscription = apiRequest.followCeleb(userId, celebrity.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ApiResponse>() {
-                    @Override
-                    public void onSuccess(ApiResponse apiResponse) {
-                        PostRequestResponse response = (PostRequestResponse) apiResponse;
-                        boolean isRequestSuccessful = response.isRequestSuccesful();
-                        handleFollowResponse(isRequestSuccessful,celebrity);
-                    }
-                    @Override
-                    public void onError(Throwable error) {
-                        handleFollowError();
-                    }
-                });
-        // add subscription to compositeSubscription
-        compositeSubscription.add(followCelebritySubscription);
+    private void startEditProfileActivity() {
+        Intent intent = new Intent(getContext(), EditProfileActivity.class);
+        startActivity(intent);
     }
 
-
-    private void handleFollowError() {
-        if (pd != null) {
-            pd.dismiss();
-        }
-        Toast.makeText(getContext(),"Something Went Wrong, Try Again Later", Toast.LENGTH_SHORT).show();
-    }
-
-    private void handleFollowResponse(boolean items, Celebrity celebrity) {
-        if (pd != null) {
-            pd.dismiss();
-        }
-        celebrity.setFollowed(items);
-        celebrityListAdapter.notifyDataSetChanged();
-    }
 
     private void sendUnFollowRequest(@NonNull String userId,@NonNull final Celebrity celebrity) {
         pd = new ProgressDialog(getContext());
@@ -190,45 +165,6 @@ public class FragmentSuggestions extends Fragment {
         celebrityListAdapter.notifyDataSetChanged();
     }
 
-    private void sendDislikeRequest(@NonNull String userId,@NonNull final Celebrity celebrity) {
-        pd = new ProgressDialog(getContext());
-        pd.setMessage("loading");
-        pd.show();
-        DislikeCelebrityRequest apiRequest = new DislikeCelebrityRequest();
-        // create rx subscription
-        Subscription unFollowCelebritySubscription = apiRequest.dislikeCeleb(userId, celebrity.getId())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleSubscriber<ApiResponse>() {
-                    @Override
-                    public void onSuccess(ApiResponse apiResponse) {
-                        PostRequestResponse response = (PostRequestResponse) apiResponse;
-                        boolean isRequestSuccessful = response.isRequestSuccesful();
-                        handleDislikeResponse(isRequestSuccessful, celebrity);
-                    }
-                    @Override
-                    public void onError(Throwable error) {
-                        handleDislikeError();
-                    }
-                });
-        // add subscription to compositeSubscription
-        compositeSubscription.add(unFollowCelebritySubscription);
-    }
-
-    private void handleDislikeError() {
-        if (pd != null) {
-            pd.dismiss();
-        }
-        Toast.makeText(getContext(),"Something Went Wrong, Try Again Later", Toast.LENGTH_SHORT).show();
-    }
-
-    private void handleDislikeResponse(boolean isSuccessful, Celebrity celebrity) {
-        if (pd != null) {
-            pd.dismiss();
-        }
-        celebrityListAdapter.removeCelebrity(celebrity);
-    }
-
 
     private void startCelebrityActivity(String id){
         Intent i=new Intent(getContext(), CelebrityActivity.class);
@@ -236,11 +172,11 @@ public class FragmentSuggestions extends Fragment {
         startActivity(i);
     }
 
-    private void requestCelebritySuggestions(@NonNull String userID) {
+    private void requestCelebritiesFollowed(@NonNull String userID) {
         addLoaderItem();
-        CelebritiesSuggestionsRequest apiRequest = new CelebritiesSuggestionsRequest();
+        CelebritiesFollowedRequest apiRequest = new CelebritiesFollowedRequest();
         // create rx subscription
-        Subscription celebritySearchSubscription = apiRequest.fetchCelebSuggestions(userID)
+        Subscription celebritySearchSubscription = apiRequest.fetchCelebFollowing(userID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleSubscriber<ApiResponse>() {
@@ -262,9 +198,11 @@ public class FragmentSuggestions extends Fragment {
 
     private void handleNewDataCelebrities(ArrayList<Celebrity> items) {
         celebrityListAdapter.removeLastItem();
-        ArrayList<SearchListingItem> newListingItems = convertFeedsToItems(items);
-        //add new items to mRecyclerView
-        celebrityListAdapter.addNewItems(newListingItems);
+        if (items != null) {
+            ArrayList<SearchListingItem> newListingItems = convertFeedsToItems(items);
+            //add new items to mRecyclerView
+            celebrityListAdapter.addNewItems(newListingItems);
+        }
     }
 
     private ArrayList<SearchListingItem> convertFeedsToItems(ArrayList<Celebrity> celebrities) {

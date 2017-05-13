@@ -14,5 +14,5 @@ public interface OnListListener {
     void onReloaderButtonSelected();
     void onFollowClick(String celebrity);
     void onUnFollowClick(String celebrity);
-
+    void onImageClicked(String imageUrl);
 }

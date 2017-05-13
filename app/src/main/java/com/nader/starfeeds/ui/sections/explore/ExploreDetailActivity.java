@@ -251,6 +251,11 @@ public class ExploreDetailActivity extends AppCompatActivity {
         public void onUnFollowClick(String celebrity) {
 
         }
+
+        @Override
+        public void onImageClicked(String imageUrl) {
+
+        }
     };
 
     private void reloadClicked() {

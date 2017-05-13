@@ -67,6 +67,7 @@
     <string name="btn_login_with_email">Login With Email</string>
     <string name="btn_create_account">Create Account</string>
     <string name="app_name_with_index">name</string>
+    <string name="edit_profile">Edit Profile</string>
 
 
 </resources>

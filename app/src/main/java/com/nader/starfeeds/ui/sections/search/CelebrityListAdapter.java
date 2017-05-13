@@ -30,13 +30,15 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private ArrayList<SearchListingItem> items = new ArrayList<>();
     private Context ctx;
     private OnItemClickListener listener;
+    private boolean isSuggestions;
 
-    public CelebrityListAdapter(ArrayList<SearchListingItem> items,OnItemClickListener listener, Context ctx) {
+    public CelebrityListAdapter(ArrayList<SearchListingItem> items, Context ctx, boolean isSuggestions ,OnItemClickListener listener) {
         if (items != null) {
             this.items = items;
         }
         this.listener = listener;
         this.ctx = ctx;
+        this.isSuggestions = isSuggestions;
     }
 
     @Override
@@ -73,6 +75,17 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void removeLastItem() {
         items.remove(items.size() - 1);
         notifyItemRemoved(items.size());
+    }
+
+    public void removeCelebrity(Celebrity celebrity){
+        for (int i = 0; i < items.size(); i++) {
+            String celebId = celebrity.getId();
+            if (items.get(i).getCelebrity().getId().equals(celebId)){
+                items.remove(i);
+                notifyItemRemoved(i);
+                break;
+            }
+        }
     }
 
     @Override
@@ -146,6 +159,7 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView tvProfileName;
         private ImageView ivProfile;
         private Button btnFollow;
+        private Button btnCancel;
 
         CelebrityViewHolder(final View view) {
             super(view);
@@ -154,19 +168,27 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvProfileName = (TextView) view.findViewById(R.id.tvProfileName);
             cvCelebrity = (CardView) view.findViewById(R.id.llCelebrity);
             btnFollow = (Button) view.findViewById(R.id.btnFollow);
+            btnCancel = (Button) view.findViewById(R.id.btnCancel);
             cvCelebrity.setOnClickListener(this);
             btnFollow.setOnClickListener(this);
+            if (isSuggestions)
+            btnCancel.setOnClickListener(this);
+            else{
+                btnCancel.setVisibility(View.GONE);
+            }
         }
 
         @Override
         public void onClick(View v) {
             Celebrity celebrity = items.get(getAdapterPosition()).getCelebrity();
+            if (listener == null) return;
             switch (v.getId()){
                 case R.id.btnFollow:
-                    if (listener != null) {
                         if (btnFollow.getText().equals("Follow")) listener.onFollowClick(celebrity);
                         else listener.onUnFollowClick(celebrity);
-                    }
+                    break;
+                case R.id.btnCancel:
+                    listener.onDislikeClick(celebrity);
                     break;
                 default:
                     if (listener != null) {
@@ -181,6 +203,7 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
         void onItemClick(Celebrity celebrity);
         void onFollowClick(Celebrity celebrity);
         void onUnFollowClick(Celebrity celebrity);
+        void onDislikeClick(Celebrity celebrity);
     }
 
 }

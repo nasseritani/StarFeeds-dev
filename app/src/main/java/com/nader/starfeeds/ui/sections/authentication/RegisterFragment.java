@@ -1,4 +1,4 @@
-package com.nader.starfeeds.authentication;
+package com.nader.starfeeds.ui.sections.authentication;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -316,13 +316,12 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         String urlCoverInstagram = feedInstagramImage.getImageUrl();
         String instagramProfileImage=feedInstagramImage.getProfileImage();
         dateInstagram = toFormattedDate(dateInstagram);
-        final FeedInstagramImageViewHolder feedInstagramImageViewHolder = holder;
-        feedInstagramImageViewHolder.tvProfileName.setText(celebNameInstagram);
-        feedInstagramImageViewHolder.tvDate.setText(dateInstagram);
-        feedInstagramImageViewHolder.tvLikesCount.setText(likesCount);
-        feedInstagramImageViewHolder.tvText.setText((Html.fromHtml("<b>" + celebNameInstagram + "</b>" + " " + instagramFeedText)));
-        Picasso.with(ctx).load(urlCoverInstagram).into(feedInstagramImageViewHolder.ivFeed);
-        Picasso.with(ctx).load(instagramProfileImage).placeholder(R.drawable.placeholder).into(feedInstagramImageViewHolder.ivProfile);
+        holder.tvProfileName.setText(celebNameInstagram);
+        holder.tvDate.setText(dateInstagram);
+        holder.tvLikesCount.setText(likesCount);
+        holder.tvText.setText((Html.fromHtml("<b>" + celebNameInstagram + "</b>" + " " + instagramFeedText)));
+        Picasso.with(ctx).load(urlCoverInstagram).into(holder.ivFeed);
+        Picasso.with(ctx).load(instagramProfileImage).placeholder(R.drawable.placeholder).into(holder.ivProfile);
     }
 
     private void bindFacebookVideo(FeedFacebookVideoViewHolder holder, FeedFacebookVideoItem item) {
@@ -507,14 +506,21 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvFeed= (TextView) view.findViewById(R.id.tvFeed);
             ivFeed = (ImageView) view.findViewById(R.id.ivTwitterFeed);
             tvDate = (TextView) view.findViewById(R.id.tvDate);
-           tvProfileName.setOnClickListener(this);
+            tvProfileName.setOnClickListener(this);
+            ivFeed.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
-            Feed feed = items.get(getAdapterPosition()).getFeed();
-            startCelebrityActivity(feed.getCelebId());
+            FeedTwitterImage feed = (FeedTwitterImage) items.get(getAdapterPosition()).getFeed();
+            switch (view.getId()){
+                case R.id.ivTwitterFeed:
+                    listener.onImageClicked(feed.getImageUrl());
+                    break;
+                default:
+                    startCelebrityActivity(feed.getCelebId());
+            }
         }
     }
 
@@ -575,12 +581,19 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             tvDate = (TextView) view.findViewById(R.id.tvDate);
             tvFeed= (TextView) view.findViewById(R.id.tvFeed);
             tvProfileName.setOnClickListener(this);
+            ivFeed.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            Feed feed = items.get(getAdapterPosition()).getFeed();
-            startCelebrityActivity(feed.getCelebId());
+            FeedFacebookImage feed = (FeedFacebookImage) items.get(getAdapterPosition()).getFeed();
+            switch (view.getId()){
+                case R.id.ivFacebookImageFeed:
+                    listener.onImageClicked(feed.getImageUrl());
+                    break;
+                default:
+                    startCelebrityActivity(feed.getCelebId());
+            }
         }
     }
     private class FeedFacebookVideoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -641,16 +654,23 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ivSend= (ImageView) view.findViewById(R.id.ivSend);
             ivProfile= (ImageView) view.findViewById(R.id.ivProfilePhoto);
             tvProfileName.setOnClickListener(this);
+            ivFeed.setOnClickListener(this);
 
         }
 
         @Override
         public void onClick(View view) {
-            Feed feed = items.get(getAdapterPosition()).getFeed();
-            startCelebrityActivity(feed.getCelebId());
+            FeedInstagramImage feed = (FeedInstagramImage) items.get(getAdapterPosition()).getFeed();
+            switch (view.getId()){
+                case R.id.ivPhoto:
+                    listener.onImageClicked(feed.getImageUrl());
+                    break;
+                default:
+                    startCelebrityActivity(feed.getCelebId());
+            }
         }
 
-        }
+    }
 
     private class FeedInstagramVideoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

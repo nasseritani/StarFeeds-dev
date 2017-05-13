@@ -1,6 +1,6 @@
 package com.nader.starfeeds.ui.sections.user_feeds;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,33 +11,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.nader.starfeeds.R;
-
+import com.nader.starfeeds.data.NetworkErrorType;
 import com.nader.starfeeds.data.SessionManager;
-import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
-import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.UserFeedsRequest;
 import com.nader.starfeeds.data.api.requests.UserNewFeedsRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
-import com.nader.starfeeds.data.api.responses.PostRequestResponse;
 import com.nader.starfeeds.data.api.responses.UserFeedsResponse;
 import com.nader.starfeeds.data.componenets.DataEnded;
-import com.nader.starfeeds.data.componenets.model.Celebrity;
+import com.nader.starfeeds.data.componenets.Loader;
+import com.nader.starfeeds.data.componenets.Reloader;
 import com.nader.starfeeds.data.componenets.model.Feed;
-import com.nader.starfeeds.data.componenets.model.FeedFacebookLink;
 import com.nader.starfeeds.data.componenets.model.FeedFacebookImage;
+import com.nader.starfeeds.data.componenets.model.FeedFacebookLink;
 import com.nader.starfeeds.data.componenets.model.FeedFacebookText;
 import com.nader.starfeeds.data.componenets.model.FeedFacebookVideo;
 import com.nader.starfeeds.data.componenets.model.FeedInstagramImage;
 import com.nader.starfeeds.data.componenets.model.FeedInstagramVideo;
-import com.nader.starfeeds.data.componenets.model.FeedTwitterLink;
 import com.nader.starfeeds.data.componenets.model.FeedTwitterImage;
+import com.nader.starfeeds.data.componenets.model.FeedTwitterLink;
 import com.nader.starfeeds.data.componenets.model.FeedTwitterText;
-import com.nader.starfeeds.data.componenets.Loader;
-import com.nader.starfeeds.data.componenets.Reloader;
-import com.nader.starfeeds.data.NetworkErrorType;
 import com.nader.starfeeds.listing.DataEndedItem;
 import com.nader.starfeeds.listing.FeedFacebookImageItem;
 import com.nader.starfeeds.listing.FeedFacebookLinkItem;
@@ -53,6 +47,7 @@ import com.nader.starfeeds.listing.ListingItem;
 import com.nader.starfeeds.listing.LoaderItem;
 import com.nader.starfeeds.listing.ReloaderItem;
 import com.nader.starfeeds.ui.listeners.OnListListener;
+import com.nader.starfeeds.ui.sections.ImageActivity;
 
 import java.util.ArrayList;
 
@@ -366,7 +361,18 @@ public class FeedsListFragment extends Fragment {
         public void onUnFollowClick(String celebId) {
 
         }
+
+        @Override
+        public void onImageClicked(String imageUrl) {
+            starImageActivity(imageUrl);
+        }
     };
+
+    private void starImageActivity(String imageUrl) {
+        Intent intent = new Intent(getContext(), ImageActivity.class);
+        intent.putExtra(ImageActivity.IMAGE_URL, imageUrl);
+        startActivity(intent);
+    }
 
     private void reloadClicked() {
         mFeedsListAdapter.removeLastItem();

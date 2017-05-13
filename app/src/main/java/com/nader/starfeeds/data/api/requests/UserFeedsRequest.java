@@ -42,10 +42,8 @@ public class UserFeedsRequest extends ApiRequest {
         ArrayList<Feed> feeds = new ArrayList<>();
         try {
             if (result != null) {
-
                 JSONObject jsonResult = new JSONObject(result);
                 JSONArray jsonArray = jsonResult.getJSONArray("data");
-
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String feedType = jsonObject.getString("feedType");

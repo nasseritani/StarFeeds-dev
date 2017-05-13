@@ -3,7 +3,6 @@ package com.nader.starfeeds.ui.sections.explore;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -64,7 +63,7 @@ public class ExploreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.row_explore, container, false);
+        View v = inflater.inflate(R.layout.fragment_explore, container, false);
         userId = SessionManager.getInstance().getSessionUser().getId();
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
@@ -240,6 +239,11 @@ public class ExploreFragment extends Fragment {
 
         @Override
         public void onUnFollowClick(String celebrity) {
+
+        }
+
+        @Override
+        public void onImageClicked(String imageUrl) {
 
         }
     };

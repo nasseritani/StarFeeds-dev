@@ -35,7 +35,16 @@
             android:paddingLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nancy Ajram"/>
+            android:text="Nancy Ajram"
+            />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/drawable_twitter_icon"
+            android:layout_toRightOf="@+id/tvProfileName"
+            android:layout_marginLeft="24dp"/>
+
         <TextView
             android:id="@+id/tvDate"
             android:layout_marginLeft="10dp"

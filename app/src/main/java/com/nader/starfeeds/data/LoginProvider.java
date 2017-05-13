@@ -59,7 +59,7 @@ public class LoginProvider implements FacebookCallback<LoginResult>,
         this.context = context;
         FacebookSdk.sdkInitialize(context);
     }
-    
+
     /**
      * Method to login user via email, sends request to SessionManager to store session.
      * @param emailInput is the email of the user.

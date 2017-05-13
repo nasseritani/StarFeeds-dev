@@ -1,9 +1,7 @@
-package com.nader.starfeeds.authentication;
+package com.nader.starfeeds.ui.sections.authentication;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -14,21 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.nader.starfeeds.Configuration.Configuration;
 import com.nader.starfeeds.R;
-import com.nader.starfeeds.data.api.requests.LoginEmailRequest;
-import com.nader.starfeeds.data.api.responses.ApiResponse;
-import com.nader.starfeeds.data.api.responses.LoginEmailResponse;
 import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
-
-import rx.SingleSubscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
 
 public class LoginFragment extends Fragment implements
         View.OnClickListener,

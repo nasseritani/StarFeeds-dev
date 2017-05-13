@@ -12,6 +12,10 @@
         android:paddingTop="@dimen/content_padding_vertical"
         android:paddingBottom="@dimen/content_padding_vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +53,16 @@
             </LinearLayout>
 
         </LinearLayout>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/drawable_fb_icon"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="24dp"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"

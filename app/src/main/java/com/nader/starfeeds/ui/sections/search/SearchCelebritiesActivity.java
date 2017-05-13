@@ -20,7 +20,6 @@ import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.SearchCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
-import com.nader.starfeeds.data.api.requests.UserCelebritiesFollowingRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
 import com.nader.starfeeds.data.api.responses.CelebritiesResponse;
 import com.nader.starfeeds.data.api.responses.PostRequestResponse;
@@ -37,7 +36,6 @@ import rx.Single;
 import rx.SingleSubscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
@@ -70,7 +68,7 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
-        celebrityListAdapter = new CelebrityListAdapter(null, new CelebrityListAdapter.OnItemClickListener() {
+        celebrityListAdapter = new CelebrityListAdapter(null,  getBaseContext(), false, new CelebrityListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Celebrity celebrity) {
                 if (celebrity != null) {
@@ -87,7 +85,11 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
             public void onUnFollowClick(Celebrity celebrity) {
                 sendUnFollowRequest(userId, celebrity);
             }
-        }, getBaseContext());
+
+            @Override
+            public void onDislikeClick(Celebrity celebrity) {
+            }
+        });
         recyclerView.setAdapter(celebrityListAdapter);
     }
 
@@ -171,7 +173,6 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
         celebrity.setFollowed(!items);
         celebrityListAdapter.notifyDataSetChanged();
     }
-
 
     private void startCelebrityActivity(String id){
         Intent i=new Intent(getBaseContext(), CelebrityActivity.class);
