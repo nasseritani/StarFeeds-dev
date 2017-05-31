@@ -54,6 +54,7 @@ import com.nader.starfeeds.listing.ListingItem;
 import com.nader.starfeeds.listing.LoaderItem;
 import com.nader.starfeeds.listing.ReloaderItem;
 import com.nader.starfeeds.ui.listeners.OnListListener;
+import com.nader.starfeeds.ui.sections.SimpleDialogFragment;
 import com.nader.starfeeds.ui.sections.user_feeds.FeedsListAdapter;
 
 import java.util.ArrayList;
@@ -306,8 +307,20 @@ public class CelebrityActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onUnFollowClick(String celebrity) {
-            sendUnFollowRequest(userId, celebrity);
+        public void onUnFollowClick(final String celebrity) {
+            final SimpleDialogFragment dialog = new SimpleDialogFragment();
+            dialog.setListener(new SimpleDialogFragment.OnDialogClicked() {
+                @Override
+                public void onConfirmClicked() {
+                    sendUnFollowRequest(userId, celebrity);
+                }
+
+                @Override
+                public void onCancelClicked() {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show(getFragmentManager(), "");
         }
 
         @Override

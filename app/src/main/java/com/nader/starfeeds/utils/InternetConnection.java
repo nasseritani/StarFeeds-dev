@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 
 /**
  * Created by Nader on 28-Oct-16.

@@ -16,23 +16,19 @@ import rx.Single;
  * Created by Nader on 22-Apr-17.
  */
 
-public class RegisterUserRequest extends ApiRequest {
+public class LoginGoogleRequest extends ApiRequest {
 
-    public Single<ApiResponse> register(@NonNull String name,
-                                        @NonNull String email,
-                                        @NonNull String password,
-                                        String country) {
+    public Single<ApiResponse> login(@NonNull String fbId, String email, String name) {
         // base url
         String url;
-        url = ApiConfig.getApiHost() + "/save-user";
+        url = ApiConfig.getApiHost() + "/api/login-google";
         // raw params //
         JSONObject rawParams = new JSONObject();
         // mandatory
         try {
-            rawParams.put("name", name);
+            rawParams.put("id", fbId);
             rawParams.put("email", email);
-            rawParams.put("password", password);
-            rawParams.put("country", country);
+            rawParams.put("name", name);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -16,23 +16,23 @@ import rx.Single;
  * Created by Nader on 22-Apr-17.
  */
 
-public class RegisterUserRequest extends ApiRequest {
+public class UpdateUserRequest extends ApiRequest {
 
-    public Single<ApiResponse> register(@NonNull String name,
-                                        @NonNull String email,
-                                        @NonNull String password,
-                                        String country) {
+    public Single<ApiResponse> update(@NonNull String id,
+                                      String name,
+                                      String email,
+                                      String country) {
         // base url
         String url;
-        url = ApiConfig.getApiHost() + "/save-user";
+        url = ApiConfig.getApiHost() + "/api/update-user";
         // raw params //
         JSONObject rawParams = new JSONObject();
         // mandatory
         try {
-            rawParams.put("name", name);
-            rawParams.put("email", email);
-            rawParams.put("password", password);
-            rawParams.put("country", country);
+            rawParams.put("id", id);
+            if (name != null) rawParams.put("name", name);
+            if (email != null) rawParams.put("email", email);
+            if (country != null) rawParams.put("country", country);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -15,8 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
+import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.settings.SettingsActivity;
 import com.nader.starfeeds.ui.sections.explore.ExploreFragment;
 import com.nader.starfeeds.ui.sections.profile.ProfileFragment;
@@ -32,6 +33,7 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
     private Toolbar mtoolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    FeedsListFragment feedsListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,15 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
         setContentView(R.layout.activity_main);
         initToolbar();
         initTabLayout();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        boolean isNew = SessionManager.getInstance().isNew();
+        if (isNew)
+            viewPager.setCurrentItem(2);
+        SessionManager.getInstance().storeIsNew(false);
     }
 
     private void initToolbar() {
@@ -58,12 +68,38 @@ public class MainViewActivity extends AppCompatActivity implements SearchView.On
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_explore_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_group_add_white_24dp);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_person_black_24dp);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0){
+                    if (feedsListFragment != null) {
+                        feedsListFragment.scrollToTop();
+                    }
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0){
+                    if (feedsListFragment != null) {
+                        feedsListFragment.scrollToTop();
+                    }
+                }
+            }
+        });
+
     }
 //Setting up viewpager with its adapter
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setOffscreenPageLimit(3);
-        adapter.addFragment(new FeedsListFragment(),"");
+        feedsListFragment = new FeedsListFragment();
+        adapter.addFragment(feedsListFragment,"");
         adapter.addFragment(new ExploreFragment(), "");
         adapter.addFragment(new FragmentSuggestions(),"");
         adapter.addFragment(new ProfileFragment(),"");

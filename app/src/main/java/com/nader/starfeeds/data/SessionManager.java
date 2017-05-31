@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.data.componenets.model.User;
 
 import org.json.JSONException;
@@ -15,12 +15,14 @@ import org.json.JSONObject;
  */
 
 public class SessionManager {
+    private static final String KEY_IS_NEW = "new";
     private static SessionManager sessionManager = null;
     private String KEY_USER = "user";
     // objects
     private User mUser;
     private boolean mIsLoggedIn;
     private SharedPreferences mSharedPreferences;
+    private boolean isNew;
 
     private SessionManager(){
         initSharedPreference();
@@ -47,6 +49,7 @@ public class SessionManager {
     private void checkSessionState() {
         // get logged in mUser
         mUser = getStoredUser();
+        isNew = getIsNew();
         // check if valid
         mIsLoggedIn = (mUser != null && mUser.getId() != null);
     }
@@ -83,6 +86,18 @@ public class SessionManager {
     }
 
     /**
+     * Stores the given User in SharedPreference.
+     */
+    public void storeIsNew(boolean isNew){
+        // instantiate SharedPreferences
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        // stores each attribute in a variable, if attribute is null the editor will clear the corresponding value.
+        editor.putBoolean(KEY_IS_NEW, isNew);
+        // commit changes
+        editor.apply();
+    }
+
+    /**
      * Clears the data in sharedPreference
      */
     private void clearSharedPreference() {
@@ -93,13 +108,18 @@ public class SessionManager {
         editor.apply();
     }
 
+    private boolean getIsNew(){
+        return mSharedPreferences.getBoolean(KEY_IS_NEW, false);
+    }
+
     /**
      * Stores a new logged in session data.
      * @param user The logged in User.
      */
-    public void storeSession(@NonNull User user){
+    public void storeSession(@NonNull User user, boolean isNew){
         //calls storeUser method with mUser as argument
         storeUser(user);
+        storeIsNew(isNew);
         // validate input data
         checkSessionState();
     }
@@ -111,6 +131,8 @@ public class SessionManager {
     public User getSessionUser(){
         return this.mUser;
     }
+
+    public boolean isNew(){return isNew;}
 
     /**
      * Clears any stored session.

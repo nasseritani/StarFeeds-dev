@@ -2,6 +2,7 @@ package com.nader.starfeeds.ui.sections.user_feeds;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.NetworkErrorType;
@@ -44,12 +46,15 @@ import com.nader.starfeeds.listing.FeedTwitterImageItem;
 import com.nader.starfeeds.listing.FeedTwitterLinkItem;
 import com.nader.starfeeds.listing.FeedTwitterTextItem;
 import com.nader.starfeeds.listing.ListingItem;
+import com.nader.starfeeds.listing.ListingItemType;
 import com.nader.starfeeds.listing.LoaderItem;
 import com.nader.starfeeds.listing.ReloaderItem;
 import com.nader.starfeeds.ui.listeners.OnListListener;
 import com.nader.starfeeds.ui.sections.ImageActivity;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import rx.SingleSubscriber;
 import rx.Subscription;
@@ -60,9 +65,8 @@ import rx.subscriptions.CompositeSubscription;
 /**
  *
  * Created by Nasse_000 on 3/11/2017.
- */
-/**
- * FeedsListFragment is the fragment class which lists
+ *
+ * FeedsListFragment is the fragment which lists
  * the items(Feeds(Instagram,Facebook,Twitter) in a linear way
  */
 
@@ -71,6 +75,7 @@ public class FeedsListFragment extends Fragment {
     private int mThreshold = 0;
     private int mItemsCount;
     private RecyclerView mRecyclerView;
+    LinearLayoutManager linearLayoutManager;
     boolean mLoadItemsSuccess = true;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
@@ -78,7 +83,7 @@ public class FeedsListFragment extends Fragment {
     private int currentPage;
     private String latestPostId;
     private String userId;
-
+    private Timer timer;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,9 +109,21 @@ public class FeedsListFragment extends Fragment {
             }
         });
 
+        timer = new Timer();
+        //Set the schedule function
+        timer.scheduleAtFixedRate(new TimerTask() {
+                                      @Override
+                                      public void run() {
+                                          if (!isLoading)
+                                              requestNewUserFeeds(userId, latestPostId);
+                                      }
+                                  },
+                120000, 120000);   // 2 minutes
+
         mRecyclerView = (RecyclerView)v.findViewById(R.id.recyclerView);
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
+        // set recycler view fixed size
         mRecyclerView.setHasFixedSize(true);
         mFeedsListAdapter = new FeedsListAdapter(null, listListener, getActivity(), false);//create new adapter
         mRecyclerView.setAdapter(mFeedsListAdapter);
@@ -128,6 +145,19 @@ public class FeedsListFragment extends Fragment {
         currentPage = 1;
         requestUserFeeds(userId, currentPage);
         return v;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+    }
+
+    public void scrollToTop(){
+        if (mRecyclerView != null) {
+            linearLayoutManager.scrollToPositionWithOffset(0, 0);
+            mRecyclerView.stopScroll();
+        }
     }
 
     private ArrayList<ListingItem> convertFeedsToItems(ArrayList<Feed> arrayFeeds) {
@@ -227,12 +257,7 @@ public class FeedsListFragment extends Fragment {
             ArrayList<ListingItem> newListingItems = convertFeedsToItems(arrayFeeds);
             //add new items to mRecyclerView
             mFeedsListAdapter.addItems(newListingItems);
-            // update mThreshold
-            if (mItemsCount == 0) {
-                mThreshold += currentCount / 2;
-            } else {
-                mThreshold += currentCount;
-            }
+            mThreshold = mFeedsListAdapter.getItemCount() - 5;
             mItemsCount += currentCount;
             isLoading = false;
             // for new feeds request
@@ -251,7 +276,6 @@ public class FeedsListFragment extends Fragment {
         mLoadItemsSuccess = false;
         isLoading = false;
     }
-
 
     /**
      * Fetches user feeds which are added after user requested feeds.
@@ -294,18 +318,14 @@ public class FeedsListFragment extends Fragment {
             ArrayList<ListingItem> newListingItems = convertFeedsToItems(items);
             //add new items to mRecyclerView
             mFeedsListAdapter.addNewItems(newListingItems);
-            // update mThreshold
-            if (mItemsCount == 0) {
-                mThreshold += currentCount / 2;
-            } else {
-                mThreshold += currentCount;
-            }
+            mThreshold = mFeedsListAdapter.getItemCount() - 5;
             mItemsCount += currentCount;
             // for new feeds request
             Feed feed = mFeedsListAdapter.getItems().get(0).getFeed();
             if (feed != null) {
                 latestPostId = feed.getId();
             }
+        } else {
         }
     }
 

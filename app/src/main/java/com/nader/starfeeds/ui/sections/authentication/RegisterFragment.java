@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,9 +103,11 @@ public class RegisterFragment extends Fragment implements LoginProvider.OnLoginP
             String name = getInputName();
             String email = getInputEmail();
             String password = getInputPassword();
+            TelephonyManager tm = (TelephonyManager)getContext().getSystemService(Context.TELEPHONY_SERVICE);
+            String countryCodeValue = tm.getNetworkCountryIso();
             LoginProvider loginProvider = new LoginProvider(getContext(), RegisterFragment.this);
-            loginProvider.registerUser(name,email,password);
-            User user = new User(name, email, password);
+            loginProvider.registerUser(name,email,password, countryCodeValue);
+            User user = new User(name, email, password, countryCodeValue);
             mListener.onRegisterSubmitSelected(user);
         }
     }

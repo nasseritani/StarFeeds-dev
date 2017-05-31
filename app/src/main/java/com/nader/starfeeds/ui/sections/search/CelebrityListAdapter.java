@@ -10,10 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.componenets.model.Celebrity;
 import com.nader.starfeeds.data.componenets.Loader;
@@ -73,8 +72,16 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
      * Removes last item of the list.
      */
     public void removeLastItem() {
-        items.remove(items.size() - 1);
-        notifyItemRemoved(items.size());
+        if (items.size() > 0) {
+            items.remove(items.size() - 1);
+            notifyItemRemoved(items.size());
+        }
+    }
+
+
+    public void removeItems() {
+        if (items != null) items.clear();
+        notifyDataSetChanged();
     }
 
     public void removeCelebrity(Celebrity celebrity){
@@ -139,6 +146,7 @@ public class CelebrityListAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemViewType(int position) {
         return items != null ? items.get(position).getType().ordinal() : 0;
     }
+
 
     private class LoaderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         CardView cardView;

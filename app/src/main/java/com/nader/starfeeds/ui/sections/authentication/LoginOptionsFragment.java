@@ -8,8 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
@@ -102,6 +103,9 @@ public class LoginOptionsFragment extends Fragment implements
             case R.id.btnFbLogin:
                 handleFbLoginButtonPressed();
                 break;
+            case R.id.btnGmailLogin:
+                handleGmailLoginButtonPressed();
+                break;
             case R.id.btnEmailLogin:
                 handleLoginButtonPressed();
                 break;
@@ -119,6 +123,14 @@ public class LoginOptionsFragment extends Fragment implements
         loginProvider.loginViaFB(getActivity());
     }
 
+    /**
+     * Handles gmail login button click.
+     */
+    public void handleGmailLoginButtonPressed() {
+        mListener.onShowProgress();
+        loginProvider.loginViaGoogle(getActivity());
+    }
+
     @Override
     public void onLoginSuccess(User user) {
         mListener.onDismissProgress();
@@ -127,6 +139,7 @@ public class LoginOptionsFragment extends Fragment implements
 
     @Override
     public void onLoginFailed(String error) {
+        Toast.makeText(getContext(), error,Toast.LENGTH_SHORT).show();
         mListener.onDismissProgress();
     }
 

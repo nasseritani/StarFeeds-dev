@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
@@ -39,9 +39,10 @@ public class AuthenticationActivity extends AppCompatActivity implements
 
     private void initPlLoader() {
         pdLoader = new ProgressDialog(this);
-        pdLoader.setMessage("Loading...");
+        pdLoader.setMessage("Logging you in...");
         pdLoader.setCancelable(true);
-        pdLoader.setIndeterminate(true);
+        pdLoader.setCanceledOnTouchOutside(true);
+        //pdLoader.setIndeterminate(true);
     }
 
 
@@ -59,7 +60,6 @@ public class AuthenticationActivity extends AppCompatActivity implements
         toolbar.setTitleTextColor(Color.BLACK);
         setSupportActionBar(toolbar);
     }
-
 
     @Override
     public void onLoginSelected() {
@@ -79,12 +79,32 @@ public class AuthenticationActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onEmailLogInFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        pdLoader.dismiss();
+    }
+
+    @Override
     public void onRegisterSelected() {
         Fragment RegisterFragment = new RegisterFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.flContainer, RegisterFragment, "registerUser");
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onShowLoginProgress() {
+        if (pdLoader != null) {
+            pdLoader.show();
+        }
+    }
+
+    @Override
+    public void onDismissLoginProgress() {
+        if (pdLoader != null) {
+            pdLoader.dismiss();
+        }
     }
 
     @Override
@@ -98,7 +118,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
 
     @Override
     public void onRegisterSubmitSelected(User user) {
-
+        onShowProgress();
     }
 
     @Override
@@ -106,26 +126,20 @@ public class AuthenticationActivity extends AppCompatActivity implements
         Log.i(Configuration.TAG, user.toString());
         Intent intent = new Intent();
         setResult(Configuration.AUTHENTICATION_REQUEST, intent);
+        onDismissProgress();
         finish();
     }
 
     @Override
     public void onShowProgress() {
-       // pdLoader.show(AuthenticationActivity.this, "", "Loading...", true);
+        if (pdLoader != null) {
+            pdLoader.show();
+        }
     }
 
     @Override
     public void onDismissProgress() {
-        pdLoader.dismiss();/*
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                if (pdLoader != null) {
-                    Log.i(Configuration.TAG, "dismiss");
-                    pdLoader.dismiss();
-                }
-            }
-        });*/
+        pdLoader.dismiss();
     }
 
     @Override
@@ -138,6 +152,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
         Log.i(Configuration.TAG, user.toString());
         Intent intent = new Intent();
         setResult(Configuration.AUTHENTICATION_REQUEST, intent);
+        pdLoader.dismiss();
         finish();
     }
 
@@ -146,6 +161,7 @@ public class AuthenticationActivity extends AppCompatActivity implements
         Log.i(Configuration.TAG, user.toString());
         Intent intent = new Intent();
         setResult(Configuration.AUTHENTICATION_REQUEST, intent);
+        pdLoader.dismiss();
         finish();
     }
 

@@ -1,4 +1,4 @@
-package com.nader.starfeeds.Configuration;
+package com.nader.starfeeds.configuration;
 
 import android.content.Context;
 

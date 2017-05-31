@@ -1,10 +1,11 @@
-package com.nader.starfeeds;
+package com.nader.starfeeds.ui.sections.authentication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.R;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.data.SessionManager;
 
 public class LogOutActivity extends AppCompatActivity {

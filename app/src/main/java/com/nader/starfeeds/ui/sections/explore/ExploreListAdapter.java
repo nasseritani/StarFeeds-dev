@@ -14,7 +14,7 @@ import android.widget.MediaController;
 
 import android.widget.TextView;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 
 import com.nader.starfeeds.data.componenets.model.FeedFacebookLink;
@@ -96,8 +96,10 @@ public class ExploreListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
      * Removes last item of the list.
      */
     public void removeLastItem() {
-        items.remove(items.size() - 1);
-        notifyItemRemoved(items.size());
+        if (items.size() > 0) {
+            items.remove(items.size() - 1);
+            notifyItemRemoved(items.size());
+        }
     }
 
     @Override

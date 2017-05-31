@@ -11,20 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.SessionManager;
 import com.nader.starfeeds.data.api.requests.CelebritiesFollowedRequest;
-import com.nader.starfeeds.data.api.requests.CelebritiesSuggestionsRequest;
-import com.nader.starfeeds.data.api.requests.DislikeCelebrityRequest;
-import com.nader.starfeeds.data.api.requests.FollowCelebrityRequest;
 import com.nader.starfeeds.data.api.requests.UnFollowCelebrityRequest;
 import com.nader.starfeeds.data.api.responses.ApiResponse;
 import com.nader.starfeeds.data.api.responses.CelebritiesResponse;
 import com.nader.starfeeds.data.api.responses.PostRequestResponse;
 import com.nader.starfeeds.data.componenets.Loader;
 import com.nader.starfeeds.data.componenets.model.Celebrity;
+import com.nader.starfeeds.data.componenets.model.User;
+import com.nader.starfeeds.ui.sections.SimpleDialogFragment;
 import com.nader.starfeeds.ui.sections.celebrity.CelebrityActivity;
 import com.nader.starfeeds.ui.sections.search.CelebrityListAdapter;
 import com.nader.starfeeds.ui.sections.search.listing.CelebrityListingItem;
@@ -45,6 +45,9 @@ public class ProfileFragment extends Fragment {
     private CelebrityListAdapter celebrityListAdapter;
     private RecyclerView mRecyclerView;
     private Button btnEditProfile;
+    private TextView tvName;
+    private TextView tvEmail;
+    private TextView tvCountry;
     boolean mLoadItemsSuccess = true;
     private boolean isLoading = false;
     private CompositeSubscription compositeSubscription = new CompositeSubscription();
@@ -62,7 +65,17 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        userId = SessionManager.getInstance().getSessionUser().getId();
+        User user = SessionManager.getInstance().getSessionUser();
+        tvName = (TextView) v.findViewById(R.id.tvName);
+        tvEmail = (TextView) v.findViewById(R.id.tvEmail);
+        tvCountry = (TextView) v.findViewById(R.id.tvCountry);
+        userId = user.getId();
+        String name = user.getName() == null ? "" : user.getName();
+        String email = user.getEmail() == null ? "" : user.getEmail();
+        String country = user.getCountry() == null ? "" : user.getCountry();
+        tvName.setText(name);
+        tvEmail.setText(email);
+        tvCountry.setText(country);
         btnEditProfile = (Button) v.findViewById(R.id.btnEditProfile);
         btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,8 +101,20 @@ public class ProfileFragment extends Fragment {
             }
 
             @Override
-            public void onUnFollowClick(Celebrity celebrity) {
-                sendUnFollowRequest(userId, celebrity);
+            public void onUnFollowClick(final Celebrity celebrity) {
+                final SimpleDialogFragment dialog = new SimpleDialogFragment();
+                dialog.setListener(new SimpleDialogFragment.OnDialogClicked() {
+                    @Override
+                    public void onConfirmClicked() {
+                        sendUnFollowRequest(userId, celebrity);
+                    }
+
+                    @Override
+                    public void onCancelClicked() {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show(getActivity().getFragmentManager(), "");
             }
 
             @Override
@@ -160,9 +185,7 @@ public class ProfileFragment extends Fragment {
         if (pd != null) {
             pd.dismiss();
         }
-        // !true (successful)
-        celebrity.setFollowed(!items);
-        celebrityListAdapter.notifyDataSetChanged();
+        celebrityListAdapter.removeCelebrity(celebrity);
     }
 
 

@@ -5,113 +5,72 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/card_view_margin_top">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/relativeLayout"
+        android:orientation="vertical"
         android:paddingTop="@dimen/content_padding_vertical"
         android:paddingBottom="@dimen/content_padding_vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/ivProfilePhoto"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/new_logo"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@color/cardview_light_background"
-            android:layout_marginLeft="5dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"/>
-
-        <TextView
-            android:id="@+id/tvProfilename"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:text="Username"
-            android:textColor="@color/cardview_dark_background"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/ivProfilePhoto"
-            android:paddingLeft="5dp" />
+            android:orientation="horizontal">
 
-        <VideoView
-            android:id="@+id/vvVideo"
-            android:layout_width="1100px"
-            android:layout_height="850px"
-            android:layout_below="@+id/ivProfilePhoto"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:background="#0000"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/ivProfilePhoto"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/new_logo"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/cardview_light_background"/>
 
-        <ImageView
-            android:id="@+id/ivLike"
-            android:src="@drawable/ic_favorite_instagram_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/vvVideo"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="18dp"
-            android:layout_alignParentStart="true"
-            android:clickable="true"
-            android:layout_alignParentLeft="true" />
+            <TextView
+                android:id="@+id/tvProfilename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:text="Username"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textColor="@color/cardview_dark_background" />
 
-        <ImageView
-            android:id="@+id/ivMakeComment"
-            android:src="@drawable/ic_message_instagram_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_alignTop="@+id/ivLike"
-            android:layout_toRightOf="@+id/ivLike"/>
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/ivSend"
-            android:src="@drawable/ic_sendto_instagram_24dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/ivLike"
-            android:layout_marginLeft="15dp"
-            android:layout_toRightOf="@+id/ivMakeComment"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="280dp"
+                android:scaleType="fitXY"
+                android:layout_gravity="center"
+                android:background="@color/light_grey"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_circle_outline_white_42dp"/>
+
+        </FrameLayout>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ivLike">
+
             <RelativeLayout
                 android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/ivLikesIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/ic_favorite_small_instagram_24dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="6dp" />
-
-                <TextView
-                    android:id="@+id/tvLikesCountNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="18"
-                    android:textStyle="bold"
-                    android:textColor="@color/cardview_dark_background"
-                    android:paddingLeft="2dp"
-                    android:layout_toRightOf="@+id/ivLikesIcon" />
-
-                <TextView
-                    android:id="@+id/tvLikesCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="likes"
-                    android:textStyle="bold"
-                    android:textColor="@color/cardview_dark_background"
-                    android:paddingLeft="2dp"
-                    android:layout_toRightOf="@+id/tvLikesCountNumber" />
 
                 <TextView
                     android:id="@+id/tvCaption"
@@ -138,6 +97,6 @@
 
         </android.support.v7.widget.CardView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

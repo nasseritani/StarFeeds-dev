@@ -17,9 +17,8 @@ import android.widget.MediaController;
 
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 
 import com.nader.starfeeds.data.componenets.model.Celebrity;
@@ -154,6 +153,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void addNewItems(ArrayList<ListingItem> newItems) {
+        items.clear();
         items.addAll(0, newItems);
         notifyDataSetChanged();
     }
@@ -169,8 +169,10 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
      * Removes last item of the list.
      */
     public void removeLastItem() {
-        items.remove(items.size() - 1);
-        notifyItemRemoved(items.size() - 1);
+        if (items.size() > 0) {
+            items.remove(items.size() - 1);
+            notifyItemRemoved(items.size() - 1);
+        }
     }
 
     public ArrayList<ListingItem> getItems() {
@@ -289,21 +291,18 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     private void bindInstagramVideo(FeedInstagramVideoViewHolder holder, FeedInstagramVideoItem item) {
-        FeedInstagramVideoItem feedInstagramVideoItem = item;
-        FeedInstagramVideo feedInstagramVideo = (FeedInstagramVideo) feedInstagramVideoItem.getFeed();
+        FeedInstagramVideo feedInstagramVideo = (FeedInstagramVideo) item.getFeed();
         String celebNameInsta = feedInstagramVideo.getCelebName();
         String dateInsta = feedInstagramVideo.getDate();
         String instaFeedText=feedInstagramVideo.getText();
-        String instalikesCount=feedInstagramVideo.getCount();
         String instaImageProfile=feedInstagramVideo.getProfileImage();
-        String urlVideoInstagram = feedInstagramVideo.getVideoUrl();
+        String urlCoverInstagram = feedInstagramVideo.getImageUrl();
         dateInsta = toFormattedDate(dateInsta);
-        final FeedInstagramVideoViewHolder feedInstagramVideoViewHolder = holder;
-        feedInstagramVideoViewHolder.tvProfileName.setText(celebNameInsta);
-        feedInstagramVideoViewHolder.tvDate.setText(dateInsta);
-        feedInstagramVideoViewHolder.tvLikesCount.setText(instalikesCount);
-        feedInstagramVideoViewHolder.tvText.setText((Html.fromHtml("<b>" + celebNameInsta + "</b>" + " " + instaFeedText)));
-        Picasso.with(ctx).load(instaImageProfile).placeholder(R.drawable.placeholder).into(feedInstagramVideoViewHolder.ivProfile);
+        holder.tvProfileName.setText(celebNameInsta);
+        holder.tvDate.setText(dateInsta);
+        holder.tvText.setText((Html.fromHtml("<b>" + celebNameInsta + "</b>" + " " + instaFeedText)));
+        Picasso.with(ctx).load(instaImageProfile).placeholder(R.drawable.placeholder).into(holder.ivProfile);
+        Picasso.with(ctx).load(urlCoverInstagram).into(holder.vvFeed);
     }
 
     private void bindInstagramImage(FeedInstagramImageViewHolder holder, FeedInstagramImageItem item) {
@@ -311,14 +310,12 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         FeedInstagramImage feedInstagramImage = (FeedInstagramImage) feedInstagramImageItem.getFeed();
         String celebNameInstagram = feedInstagramImage.getCelebName();
         String dateInstagram = feedInstagramImage.getDate();
-        String instagramFeedText=feedInstagramImage.getText();
-        String likesCount=feedInstagramImage.getCount();
+        String instagramFeedText= feedInstagramImage.getText().equals("null") ? "" : feedInstagramImage.getText();
         String urlCoverInstagram = feedInstagramImage.getImageUrl();
         String instagramProfileImage=feedInstagramImage.getProfileImage();
         dateInstagram = toFormattedDate(dateInstagram);
         holder.tvProfileName.setText(celebNameInstagram);
         holder.tvDate.setText(dateInstagram);
-        holder.tvLikesCount.setText(likesCount);
         holder.tvText.setText((Html.fromHtml("<b>" + celebNameInstagram + "</b>" + " " + instagramFeedText)));
         Picasso.with(ctx).load(urlCoverInstagram).into(holder.ivFeed);
         Picasso.with(ctx).load(instagramProfileImage).placeholder(R.drawable.placeholder).into(holder.ivProfile);
@@ -638,8 +635,8 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
     private class FeedInstagramImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvProfileName,tvText ,tvDate,tvLikesCount,tvLikes;
-        private ImageView ivProfile,ivFeed,ivLike,ivComment,ivSend;
+        private TextView tvProfileName,tvText ,tvDate;
+        private ImageView ivProfile,ivFeed;
         FeedInstagramImageViewHolder(final View view) {
             super(view);
             // init views
@@ -647,15 +644,9 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ivFeed = (ImageView) view.findViewById(R.id.ivPhoto);
             tvDate = (TextView) view.findViewById(R.id.tvTime);
             tvText = (TextView) view.findViewById(R.id.tvCaption);
-            tvLikesCount= (TextView) view.findViewById(R.id.tvLikesCountNumber);
-            tvLikes = (TextView) view.findViewById(R.id.tvLikesCount);
-            ivComment= (ImageView) view.findViewById(R.id.ivMakeComment);
-            ivLike= (ImageView) view.findViewById(R.id.ivLike);
-            ivSend= (ImageView) view.findViewById(R.id.ivSend);
             ivProfile= (ImageView) view.findViewById(R.id.ivProfilePhoto);
             tvProfileName.setOnClickListener(this);
             ivFeed.setOnClickListener(this);
-
         }
 
         @Override
@@ -674,29 +665,31 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private class FeedInstagramVideoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvProfileName,tvText ,tvDate,tvUsername,tvLikesCount,tvLikes;
-        private ImageView ivProfile,ivLike,ivComment,ivSend;
-        private VideoView vvFeed;
+        private TextView tvProfileName,tvText ,tvDate,tvUsername;
+        private ImageView ivProfile;
+        private ImageView vvFeed;
         FeedInstagramVideoViewHolder(final View view) {
             super(view);
             // init views
             tvProfileName = (TextView) view.findViewById(R.id.tvProfilename);
-            vvFeed = (VideoView) view.findViewById(R.id.vvVideo);
+            vvFeed = (ImageView) view.findViewById(R.id.ivFeed);
             tvDate = (TextView) view.findViewById(R.id.tvTime);
             tvText = (TextView) view.findViewById(R.id.tvCaption);
-            tvLikesCount= (TextView) view.findViewById(R.id.tvLikesCountNumber);
-            tvLikes = (TextView) view.findViewById(R.id.tvLikesCount);
-            ivComment= (ImageView) view.findViewById(R.id.ivMakeComment);
-            ivLike= (ImageView) view.findViewById(R.id.ivLike);
-            ivSend= (ImageView) view.findViewById(R.id.ivSend);
             ivProfile= (ImageView) view.findViewById(R.id.ivProfilePhoto);
             tvProfileName.setOnClickListener(this);
+            vvFeed.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Feed feed = items.get(getAdapterPosition()).getFeed();
-            startCelebrityActivity(feed.getCelebId());
+            FeedInstagramVideo item = (FeedInstagramVideo)items.get(getAdapterPosition()).getFeed();
+            switch (v.getId()){
+                case R.id.ivFeed:
+                    startVideoPlayer(item.getVideoUrl());
+                    break;
+                default:
+                    startCelebrityActivity(item.getCelebId());
+            }
         }
     }
 
@@ -772,7 +765,7 @@ public class FeedsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
-    void startVideoPlayer(String extra) {
+    private void startVideoPlayer(String extra) {
         // check if valid not Id and break
         if (extra == null || extra.isEmpty()) {
             Toast.makeText(ctx, "Playback Failed", Toast.LENGTH_SHORT).show();

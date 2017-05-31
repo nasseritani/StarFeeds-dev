@@ -1,11 +1,15 @@
 package com.nader.starfeeds.ui.sections.search;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +29,7 @@ import com.nader.starfeeds.data.api.responses.CelebritiesResponse;
 import com.nader.starfeeds.data.api.responses.PostRequestResponse;
 import com.nader.starfeeds.data.componenets.model.Celebrity;
 import com.nader.starfeeds.data.componenets.Loader;
+import com.nader.starfeeds.ui.sections.SimpleDialogFragment;
 import com.nader.starfeeds.ui.sections.celebrity.CelebrityActivity;
 import com.nader.starfeeds.ui.sections.search.listing.CelebrityListingItem;
 import com.nader.starfeeds.ui.sections.search.listing.SearchListingItem;
@@ -46,6 +51,7 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
     CompositeSubscription compositeSubscription = new CompositeSubscription();
     ProgressDialog pd ;
     String userId;
+    private boolean isloading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +79,7 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
             public void onItemClick(Celebrity celebrity) {
                 if (celebrity != null) {
                     startCelebrityActivity(celebrity.getId());
+                    celebrityListAdapter.removeItems();
                 }
             }
 
@@ -82,8 +89,20 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onUnFollowClick(Celebrity celebrity) {
-                sendUnFollowRequest(userId, celebrity);
+            public void onUnFollowClick(final Celebrity celebrity) {
+                final SimpleDialogFragment dialog = new SimpleDialogFragment();
+                dialog.setListener(new SimpleDialogFragment.OnDialogClicked() {
+                    @Override
+                    public void onConfirmClicked() {
+                        sendUnFollowRequest(userId, celebrity);
+                    }
+
+                    @Override
+                    public void onCancelClicked() {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show(getFragmentManager(), "");
             }
 
             @Override
@@ -205,6 +224,11 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.length() > 3)
+                requestCelebritySearch(newText, userId);
+                else{
+                    celebrityListAdapter.removeItems();
+                }
                 return false;
             }
         });
@@ -239,7 +263,8 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
     }
 
     private void handleNewDataCelebrities(ArrayList<Celebrity> itemsSearchedCelebs) {
-        celebrityListAdapter.removeLastItem();
+        isloading = false;
+        celebrityListAdapter.removeItems();
         ArrayList<SearchListingItem> newListingItems = convertCelebsToItems(itemsSearchedCelebs);
         //add new itemsSearchedCelebs to mRecyclerView
         celebrityListAdapter.addNewItems(newListingItems);
@@ -257,6 +282,7 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
 
 
     private void handleNewDataFeedsError() {
+        isloading = false;
         celebrityListAdapter.removeLastItem();
     }
 
@@ -264,12 +290,14 @@ public class SearchCelebritiesActivity extends AppCompatActivity {
      * Adds a loader item to the adapter.
      */
     private void addLoaderItem() {
+        if (isloading) return;
         //create new loader
         Loader loader = new Loader();
         //create new loaderItem with loader
         SearchLoaderItem loaderItem = new SearchLoaderItem(loader);
         //add loaderItem to arrayList
         celebrityListAdapter.addNewItem(loaderItem);
+        isloading = true;
     }
 
 }

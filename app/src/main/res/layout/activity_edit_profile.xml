@@ -54,6 +54,20 @@
                 android:hint="@string/hint_email" />
         </android.support.design.widget.TextInputLayout>
 
+        <TextView
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Country"/>
+
+        <Spinner
+            android:id="@+id/spinnerCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Base.Widget.AppCompat.Spinner.Underlined">
+        </Spinner>
+
         <Button android:id="@+id/btnRegisterSubmit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

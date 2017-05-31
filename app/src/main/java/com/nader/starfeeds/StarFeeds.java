@@ -2,7 +2,7 @@ package com.nader.starfeeds;
 
 import android.app.Application;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 
 /**
  * Created by Nader on 07-Sep-16.

@@ -1,4 +1,4 @@
-package com.nader.starfeeds;
+package com.nader.starfeeds.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,10 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.nader.starfeeds.Configuration.Configuration;
-import com.nader.starfeeds.ui.sections.authentication.AuthenticationActivity;
+import com.nader.starfeeds.R;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.data.SessionManager;
+import com.nader.starfeeds.ui.sections.authentication.AuthenticationActivity;
 import com.nader.starfeeds.ui.sections.home.MainViewActivity;
 
 /**

@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".SplashActivity">
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ui.sections.SplashActivity">
     <item android:id="@+id/action_settings" android:title=""
         android:orderInCategory="100" app:showAsAction="ifRoom"
         android:icon="@drawable/ic_settings_white_24dp"

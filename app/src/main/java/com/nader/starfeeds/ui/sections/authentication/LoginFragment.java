@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.nader.starfeeds.Configuration.Configuration;
+import com.nader.starfeeds.configuration.Configuration;
 import com.nader.starfeeds.R;
 import com.nader.starfeeds.data.componenets.model.User;
 import com.nader.starfeeds.data.LoginProvider;
@@ -138,7 +138,7 @@ public class LoginFragment extends Fragment implements
         if (validateEmail() && validatePassword()) {
             // inputs are valid
             // inform parent
-            mListener.onShowProgress();
+            mListener.onShowLoginProgress();
             LoginProvider loginProvider = new LoginProvider(getContext(), this);
             loginProvider.loginViaEmail(getEmailInput(),getPasswordInput());
         }
@@ -216,12 +216,12 @@ public class LoginFragment extends Fragment implements
     @Override
     public void onLoginSuccess(User user) {
         mListener.onLoggedIn(user);
-        mListener.onDismissProgress();
+        mListener.onDismissLoginProgress();
     }
 
     @Override
     public void onLoginFailed(String error) {
-        mListener.onDismissProgress();
+        mListener.onEmailLogInFailed(error);
     }
 
     @Override
@@ -242,6 +242,8 @@ public class LoginFragment extends Fragment implements
          */
         void onLoggedIn(User user);
 
+        void onEmailLogInFailed(String message);
+
         /**
          * Indicates register button pressed.
          */
@@ -250,12 +252,12 @@ public class LoginFragment extends Fragment implements
         /**
          * Indicates progress taking place.
          */
-        void onShowProgress();
+        void onShowLoginProgress();
 
         /**
          * Indicates current progress finished.
          */
-        void onDismissProgress();
+        void onDismissLoginProgress();
 
         /**
          * Triggered to change toolbar title.
